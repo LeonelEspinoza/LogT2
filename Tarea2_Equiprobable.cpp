@@ -13,6 +13,13 @@ void main_splay(int n){
     iota(A, A + n, 1);
     //Se permuta el arreglo de manera aleatoria
     shuffle(A, A + n, mt19937{random_device{}()});    
+    RBTree tree;
+    for (int i = 0; i < n; i++){
+        tree.insert(i+1);
+    }
+    for (int i = 0; i < n; i++){
+        tree.search(i+1);
+    }
     free(A);
 }
 
@@ -29,27 +36,10 @@ int main(){
     //Testeamos 10 veces para el n dado
     for(int i=0; i<5; i++){
         for (int j=16; j<25; j++){
-            //main_splay(j);
-            //main_rbtree(j);
+            main_splay(j);
+            main_rbtree(j);
             int n = pow(2,i);
         }
     }
-    RBTree tree;
- 
-    tree.insert(7);
-    tree.insert(6);
-    tree.insert(5);
-    tree.insert(4);
-    tree.insert(3);
-    tree.insert(2);
-    tree.insert(1);
- 
-    cout << "Inoder Traversal of Created Tree\n";
-    tree.inorder();
- 
-    cout << "\n\nLevel Order Traversal of Created Tree\n";
-    tree.levelOrder();
-    cout << "\n";
- 
     return 0;
 }

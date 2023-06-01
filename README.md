@@ -6,4 +6,4 @@ Integrantes:
 + Leonel Espinoza
 
 Para Compilar:
-g++ -O3 .\Tarea2_Equiprobable.cpp .\redblacktree.cpp -o Tarea2_Equiprobable
+> g++ -O3 .\Tarea2_Equiprobable.cpp .\redblacktree.cpp  -o Tarea2_Equiprobable
