@@ -41,8 +41,11 @@ void main(){
         //seteamos el N
         N=N*2;
         //crear tres arreglos de tamaño M
-        int tmp[M]={0};
-        int* arreglos[3]={tmp,tmp,tmp};
+        int tmp1[M]={0};
+        int tmp2[M]={0};
+        int tmp3[M]={0};
+
+        int* arreglos[3]={tmp1,tmp2,tmp3};
         //crear una permutacion aleatoria de pi
         int *pi = new int[N];
         //Se llena el arreglo con los numeros del 1 al N
