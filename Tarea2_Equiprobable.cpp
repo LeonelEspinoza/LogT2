@@ -8,6 +8,10 @@
 using namespace std;
 
 void main_splay(int n){
+    
+}
+
+void main_rbtree(int n){
     int *A = new int[n];
     //Se llena el arreglo con los numeros del 1 al n
     iota(A, A + n, 1);
@@ -18,27 +22,20 @@ void main_splay(int n){
         tree.insert(i+1);
     }
     for (int i = 0; i < n; i++){
-        tree.search(i+1);
-    }
-    free(A);
-}
+        searchRBT(tree.root, i+1);}
 
-void main_rbtree(int n){
-    int *A = new int[n];
-    //Se llena el arreglo con los numeros del 1 al n
-    iota(A, A + n, 1);
-    //Se permuta el arreglo de manera aleatoria
-    shuffle(A, A + n, mt19937{random_device{}()});
     free(A);
 }
 
 int main(){
     //Testeamos 10 veces para el n dado
     for(int i=0; i<5; i++){
+        int n = pow(2,i);
         for (int j=16; j<25; j++){
-            main_splay(j);
-            main_rbtree(j);
-            int n = pow(2,i);
+
+            main_splay(n);
+            main_rbtree(n);
+            ;
         }
     }
     return 0;

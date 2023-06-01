@@ -255,7 +255,7 @@ void RBTree::inorder()     {  inorderHelper(root);}
 void RBTree::levelOrder()  {  levelOrderHelper(root); }
 
 // Function to search a given value
-Node *search(Node *root, int key)
+Node *searchRBT(Node *root, int key)
 {
     // Base Cases: root is null or key is present at root
     if (root == NULL || root->data == key)
@@ -263,10 +263,10 @@ Node *search(Node *root, int key)
      
     // Key is greater than root's key
     if (root->data < key)
-        return search(root->right, key);
+        return searchRBT(root->right, key);
     else {
         // Key is smaller than root's key
-        return search(root->left, key);
+        return searchRBT(root->left, key);
     }
 }
 

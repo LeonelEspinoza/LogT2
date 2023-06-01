@@ -22,7 +22,7 @@ Node(int data)
 
 class RBTree
 {
-private:
+public:
 Node *root;
 
 protected:
@@ -38,6 +38,7 @@ void insert(const int &n);
 void inorder();
 void levelOrder();
 };
+Node *searchRBT(Node *root, int key);
 
 // Utility functions
 void inorderHelper(Node root);
