@@ -79,15 +79,26 @@ void main_rbtree(int exp_n){
         tree.insert(i+1);
     }
 
-    //Se genera el arreglo de Bsecuencia
-    int *BSecuencia = new int[m];
-    
-    for (int i = 0; i < m; i++){
-        BSecuencia[i] = A[i%n];
-    }
     //Se libera la memoria
     delete[] A;
-    shuffle(BSecuencia, BSecuencia + m, mt19937{random_device{}()});
+
+    //Se genera el arreglo de Bsecuencia
+    int *BSecuencia = new int[m];
+
+    // Notamos que m al ser 2**i n, entonces para formar el arreglo de Bsecuencia
+    // basta con ir leyendo el arreglo A de manera circular.    
+    for (int i = 0; i < m; i++){
+        //BSecuencia[i] = A[i%n]; se quito esto para ser mas optimo con la memoria
+        BSecuencia[i] = i%n + 1;
+    }
+
+    
+
+    //finalmente se permuta el arreglo para que sea aleatorio
+    //y no ciclico
+    shuffle(BSecuencia, BSecuencia + m, mt19937{random_device{}()}); 
+
+
     //Se inicia el cronometro
     auto inicio = chrono::high_resolution_clock::now();
     //Se busca cada elemento del arreglo M en el arbol
@@ -103,7 +114,7 @@ void main_rbtree(int exp_n){
     auto duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
     //se printea
     cout << "La búsqueda tardó " << duracion << " milisegundos en ejecutarse." << endl;
-    
+
 }
 
 int main(){
