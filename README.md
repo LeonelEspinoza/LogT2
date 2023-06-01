@@ -5,9 +5,15 @@ Integrantes:
 + Nicolás Calbucura  
 + Leonel Espinoza
 
-Para Compilar:
+### Debes correr el siguiente comando para compilar el proyecto:
+> cmake -B build -S .
+
+Posteriormente, debes correr make en la carpeta build.
+
+#### Via comando:
+Para compilar si no tienes cmake/make:
 - La tarea equiprobable:
->  g++ -O3 .\Tarea2_Equiprobable.cpp .\redblacktree.cpp .\splaytree.cpp  -o Tarea2_Equiprobable
+>  g++ -O3 -I Librerias T2_Equiprobable.cpp -o Tarea2_Equiprobable
 
 - La tarea Skew:
-> g++ -O3 .\Tarea2_Skew.cpp .\redblacktree.cpp .\splaytree.cpp  -o Tarea2_Equiprobable
+>  g++ -O3 -I Librerias T2_Skew.cpp -o Tarea2_Skew

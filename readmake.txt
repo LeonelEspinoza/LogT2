@@ -1,0 +1,12 @@
+#-------------------#
+make: Te enseña el readme para que veas los comandos que puedes usar.
+
+make clean: Limpia los archivos generados por el compilador.
+
+make compile: Compila los archivos de la P1 y P2, que son el caso equiprobable y el caso skew.
+
+make run-equiprobable: Ejecuta el programa de la p1 que consiste en el arreglo equiprobable.
+
+make run-skew: Ejecuta el programa de la p2 que consiste en el arreglo skew.
+
+#-------------------#
