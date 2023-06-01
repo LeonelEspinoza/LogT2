@@ -10,7 +10,7 @@ static const int m = pow(2,28); //Tamaño del arreglo de la secuencia de búsque
 using namespace std;
 
 void main_splay(int exp_n){
-    int n = pow(2, exp_n); //Tamaño del arreglo de los elementos que se insertarán en el árbol
+    int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
     int *N = new int[n];
     int *M = new int[m];
 
@@ -79,7 +79,7 @@ void main_splay(int exp_n){
     fclose(f);*/
 }
 
-void main_rbtree(int exp_n){
+void main_RBTree(int exp_n){
     int n = pow(2, exp_n); //Tamaño del arreglo de los elementos que se insertarán en el árbol
     int *N = new int[n];
     int *M = new int[m];
@@ -133,15 +133,15 @@ void main_rbtree(int exp_n){
 }
 
 int main(){
-    //Testeamos 10 veces para el n dado indica 2^n
+    //Testeamos 5 veces para el n dado indica 2^n
     int n;
     for(int i=16; i<25; i++){
         n=i;
         printf("Para n = %d:\n", n);
         for (int j=0; j<5; j++){
             printf("Test %d:\n", j+1);
-            main_rbtree(n);
-            main_splay(n);         
+            main_RBTree(n);
+            main_splay(n);
         }
     }
     return 0;
