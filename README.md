@@ -5,3 +5,5 @@ Integrantes:
 + Nicolás Calbucura  
 + Leonel Espinoza
 
+Para Compilar:
+g++ -O3 .\Tarea2_Equiprobable.cpp .\redblacktree.cpp -o Tarea2_Equiprobable
