@@ -68,6 +68,8 @@ void main_splay(int exp_n){
 
     //Se guarda el resultado en el arreglo de resultados
     //res[j] = int(duracion);
+    printf("Caso SplayTree:\n");
+    printf("La búsqueda tardó %ld milisegundos en ejecutarse.\n", duracion);
 
     /*
     Por ahora sin txt para que veamos si funciona
@@ -135,6 +137,7 @@ void main_rbtree(int exp_n){
     //Se calcula el tiempo transcurrido
     auto duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
     //se printea
+    printf("Caso RBTree:\n");
     cout << "La búsqueda tardó " << duracion << " milisegundos en ejecutarse." << endl;
 
 }
@@ -142,8 +145,11 @@ void main_rbtree(int exp_n){
 int main(){
     //Testeamos 10 veces para el n dado indica 2^n
     int n;
-    for(int i=0; i<5; i++){
-        for (int j=16; j<25; j++){
+    for(int i=16; i<25; i++){
+        n=i;
+        printf("Para n = %d:\n", n);
+        for (int j=0; j<5; j++){
+            printf("Test %d:\n", j+1);
             main_rbtree(n);
             main_splay(n);            
         }
