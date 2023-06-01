@@ -4,6 +4,7 @@
 #include <algorithm> //Para lograr
 #include <random>   // garantizar que el arreglo sea aleatorio
 #include "redblacktree.h"
+#include "splaytree.h"
 
 using namespace std;
 

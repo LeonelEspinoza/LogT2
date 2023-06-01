@@ -175,8 +175,10 @@ void preOrder(node *root)
         preOrder(root->right);
     }
 }
- 
+
+
 /* Driver code*/
+/*
 int main()
 {
     node *root = insert(NULL, 100);
@@ -186,6 +188,6 @@ int main()
     cout<<"Preorder traversal of the modified Splay tree is \n";
     preOrder(root);
     return 0;
-}
+}*/ 
  
 // This code is contributed by rathbhupendra

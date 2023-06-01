@@ -6,4 +6,8 @@ Integrantes:
 + Leonel Espinoza
 
 Para Compilar:
-> g++ -O3 .\Tarea2_Equiprobable.cpp .\redblacktree.cpp  -o Tarea2_Equiprobable
+- La tarea equiprobable:
+>  g++ -O3 .\Tarea2_Equiprobable.cpp .\redblacktree.cpp .\splaytree.cpp  -o Tarea2_Equiprobable
+
+- La tarea Skew:
+> g++ -O3 .\Tarea2_Skew.cpp .\redblacktree.cpp .\splaytree.cpp  -o Tarea2_Equiprobable
