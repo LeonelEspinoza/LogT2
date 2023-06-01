@@ -7,27 +7,23 @@
 
 using namespace std;
 
-int N=pow(2,15);
-static const int M=pow(2,28);
-float alpha=0.5;
-int SUM;
+static const int m=pow(2,28);
 
-int fun(int i){
-    int res=int(pow(i,alpha));
+int function(int i, int alpha){
+    int res = (int) pow(i,alpha);
     return res;
 }
 
-void SetSUM(){
-    int res=0;
-    for(int i=0;i<N;i++){
-        res+=fun(i);
+int SUM(int alpha, int n){
+    int SUM=0;
+    for(int i=1;i<=n;i++){
+        SUM+=function(i,alpha);
     }
-    SUM=res;
-    return ;
+    return SUM;
 }
 
-int phi(int i){
-    int res=(fun(i)*M)/SUM;
+int phi(int i, int alpha, int n){
+    int res=(function(i,alpha)*m)/SUM(alpha,n);
     return res;
 }
 
