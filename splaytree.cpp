@@ -179,13 +179,10 @@ void preOrder(node *root)
 /* Driver code*/
 int main()
 {
-    node *root = newNode(100);
-    root->left = newNode(50);
-    root->right = newNode(200);
-    root->left->left = newNode(40);
-    root->left->left->left = newNode(30);
-    root->left->left->left->left = newNode(20);
-    root = insert(root, 25);
+    node *root = insert(NULL, 100);
+    root=insert(root, 50);
+    root=insert(root, 200);
+    root=insert(root, 20);
     cout<<"Preorder traversal of the modified Splay tree is \n";
     preOrder(root);
     return 0;
