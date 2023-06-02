@@ -62,7 +62,7 @@ void main_splay(int exp_n){
     //res[j] = int(duracion);
 
     printf("Caso SplayTree:\n");
-    printf("La búsqueda tardó %ld milisegundos en ejecutarse.\n", duracion);
+    printf("La busqueda tardo %ld milisegundos en ejecutarse.\n", duracion);
 
     /*
     Por ahora sin txt para que veamos si funciona
@@ -118,6 +118,7 @@ void main_RBTree(int exp_n){
     for(int i=0; i<m; i++){
         searchRBT(tree.root, M[i]);
     }
+    
     //Se finaliza el cronometro
     auto fin = chrono::high_resolution_clock::now();
     
@@ -129,7 +130,7 @@ void main_RBTree(int exp_n){
 
     //Se printea
     printf("Caso RBTree:\n");
-    cout << "La búsqueda tardó " << duracion << " milisegundos en ejecutarse." << endl;
+    cout << "La busqueda tardu " << duracion << " milisegundos en ejecutarse." << endl;
 }
 
 int main(){
