@@ -10,12 +10,12 @@ using namespace std;
 
 static const int m=pow(2,28);
 
-int f(int i, int alpha){
+int f(int i, double alpha){
     int res = (int) pow(i,alpha);
     return res;
 }
 
-int SUM(int alpha, int n){
+int SUM(double alpha, int n){
     int SUM=0;
     for(int i=1;i<=n;i++){
         SUM+=f(i,alpha);
@@ -23,7 +23,7 @@ int SUM(int alpha, int n){
     return SUM;
 }
 
-int phi(int i, int alpha, int n){
+int phi(int i, double alpha, int n){
     int res=(f(i,alpha)*m)/SUM(alpha,n);
     return res;
 }
@@ -53,11 +53,11 @@ void main_splay(int exp_n){
     shuffle(pi, pi + n, mt19937{random_device{}()});
 
     //Un arreglo de los valores que debe tomar alpha
-    int alphas[3]={0.5,1,1.5};
+    double alphas[3]={0.5,1,1.5};
 
     for(int i=0; i<3; i++) {
         //Se setea el apha correspondiente
-        int alpha=(int) alphas[i];
+        double alpha = alphas[i];
 
         //Se setea el SUM correspondiente
         int suma = SUM(alpha,n);
@@ -92,7 +92,7 @@ void main_splay(int exp_n){
     delete[] N;
 
     //Se inicia el cronometro
-    auto inicio = chrono::high_resolution_clock::now();
+    auto inicio1 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo C1 en el árbol
     for(int i=0; i<m; i++){
@@ -100,16 +100,16 @@ void main_splay(int exp_n){
     }
 
     //Se finaliza el cronometro
-    auto fin = chrono::high_resolution_clock::now();
+    auto fin1 = chrono::high_resolution_clock::now();
 
     //Se calcula el tiempo transcurrido
-    auto duracionC1 = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
+    auto duracionC1 = chrono::duration_cast<chrono::milliseconds>(fin1 - inicio1).count();
 
     //Se libera la memoria de C1
     delete[] C1;
 
     //Se inicia el cronometro
-    auto inicio = chrono::high_resolution_clock::now();
+    auto inicio2 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo C2 en el árbol
     for(int i=0; i<m; i++){
@@ -117,16 +117,16 @@ void main_splay(int exp_n){
     }
 
     //Se finaliza el cronometro
-    auto fin = chrono::high_resolution_clock::now();
+    auto fin2 = chrono::high_resolution_clock::now();
 
     //Se calcula el tiempo transcurrido
-    auto duracionC2 = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
+    auto duracionC2 = chrono::duration_cast<chrono::milliseconds>(fin2 - inicio2).count();
 
     //Se libera la memoria de C2
     delete[] C2;
 
     //Se inicia el cronometro
-    auto inicio = chrono::high_resolution_clock::now();
+    auto inicio3 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo C3 en el árbol
     for(int i=0; i<m; i++){
@@ -134,10 +134,10 @@ void main_splay(int exp_n){
     }
 
     //Se finaliza el cronometro
-    auto fin = chrono::high_resolution_clock::now();
+    auto fin3 = chrono::high_resolution_clock::now();
 
     //Se calcula el tiempo transcurrido
-    auto duracionC3 = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
+    auto duracionC3 = chrono::duration_cast<chrono::milliseconds>(fin3 - inicio3).count();
 
     //Se libera la memoria de C3
     delete[] C3;
@@ -173,11 +173,11 @@ void main_RBTree(int exp_n){
     shuffle(pi, pi + n, mt19937{random_device{}()});
 
     //Un arreglo de los valores que debe tomar alpha
-    int alphas[3]={0.5,1,1.5};
+    double alphas[3]={0.5,1,1.5};
 
     for(int i=0; i<3; i++) {
         //Se setea el apha correspondiente
-        int alpha=(int) alphas[i];
+        double alpha= alphas[i];
 
         //Se setea el SUM correspondiente
         int suma = SUM(alpha,n);
@@ -212,7 +212,7 @@ void main_RBTree(int exp_n){
     delete[] N;
 
     //Se inicia el cronometro
-    auto inicio = chrono::high_resolution_clock::now();
+    auto inicio1 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo M en el arbol
     for(int i=0; i<m; i++){
@@ -220,16 +220,16 @@ void main_RBTree(int exp_n){
     }
 
     //Se finaliza el cronometro
-    auto fin = chrono::high_resolution_clock::now();
+    auto fin1 = chrono::high_resolution_clock::now();
 
     //Se calcula el tiempo transcurrido
-    auto duracionC1 = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
+    auto duracionC1 = chrono::duration_cast<chrono::milliseconds>(fin1 - inicio1).count();
 
     //Se libera la memoria de C1
     delete[] C1;
 
     //Se inicia el cronometro
-    auto inicio = chrono::high_resolution_clock::now();
+    auto inicio2 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo M en el arbol
     for(int i=0; i<m; i++){
@@ -237,16 +237,16 @@ void main_RBTree(int exp_n){
     }
 
     //Se finaliza el cronometro
-    auto fin = chrono::high_resolution_clock::now();
+    auto fin2 = chrono::high_resolution_clock::now();
 
     //Se calcula el tiempo transcurrido
-    auto duracionC2 = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
+    auto duracionC2 = chrono::duration_cast<chrono::milliseconds>(fin2 - inicio2).count();
 
     //Se libera la memoria de C2
     delete[] C2;
 
     //Se inicia el cronometro
-    auto inicio = chrono::high_resolution_clock::now();
+    auto inicio3 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo M en el arbol
     for(int i=0; i<m; i++){
@@ -254,10 +254,10 @@ void main_RBTree(int exp_n){
     }
 
     //Se finaliza el cronometro
-    auto fin = chrono::high_resolution_clock::now();
+    auto fin3 = chrono::high_resolution_clock::now();
 
     //Se calcula el tiempo transcurrido
-    auto duracionC3 = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
+    auto duracionC3 = chrono::duration_cast<chrono::milliseconds>(fin3 - inicio3).count();
 
     //Se libera la memoria de C3
     delete[] C3;
