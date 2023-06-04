@@ -1,0 +1,21 @@
+Para n = 2^2:
+Test 1:
+La busqueda tardo 3999 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 2848 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 2818 milisegundos en ejecutarse.
+
+Promedio de RBTree: 3221.666748
+Varianza de RBTree: 302273.531250
+Desviacion estandar de RBTree: 549.794067
+
+Para n = 2^3:
+Test 1:
+La busqueda tardo 3141 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 3891 milisegundos en ejecutarse.
+

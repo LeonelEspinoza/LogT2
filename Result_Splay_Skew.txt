@@ -1,0 +1,6 @@
+Para n = 2:
+Test 1:
+La busqueda para alfa = 0.5 tardo 1813 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 1371 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 1173 milisegundos en ejecutarse.
+Test 2:

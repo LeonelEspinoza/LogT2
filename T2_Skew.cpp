@@ -7,7 +7,7 @@
 #include <splaytree.h>
 
 using namespace std;
-int n_test=3;
+unsigned int n_test=3;
 float *resRBT05;
 float *resRBT1;
 float *resRBT15;
@@ -15,37 +15,38 @@ float *res05; //Arreglo donde se guardarán los tiempos de ejecución de cada te
 float *res1;
 float *res15;
 
-static const int m=pow(2,28);
+static const unsigned int m=pow(2,28);
 
-int f(int i, double alpha){
-    int res = (int) pow(i,alpha);
+unsigned int f(unsigned int i, double alpha){
+    unsigned int res = (int) pow(i,alpha);
     return res;
 }
 
-int SUM(double alpha, int n){
-    int SUM=0;
-    for(int i=1;i<=n;i++){
+unsigned int SUM(double alpha, unsigned int n){
+    unsigned int SUM=0;
+    for(unsigned int i=1;i<=n;i++){
         SUM+=f(i,alpha);
     }
     return SUM;
 }
 
-int phi(int i, double alpha, int n){
-    int res=(f(i,alpha)*m)/SUM(alpha,n);
+unsigned int phi(unsigned int i, double alpha, unsigned int n){
+    double res1=(f(i,alpha)*m)/SUM(alpha,n);
+    unsigned int res=(unsigned int) res1;
     return res;
 }
 
-void main_splay(int exp_n, int ntest){
-    int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
-    int *pi = new int[n];
-    int *N = new int[n];
+void main_splay(unsigned int exp_n, unsigned int ntest){
+    unsigned int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
+    unsigned int *pi = new unsigned int[n];
+    unsigned int *N = new unsigned int[n];
 
     //Crear tres arreglos de tamaño M
-    int *C1 = new int[m];
-    int *C2 = new int[m];
-    int *C3 = new int[m];
+    unsigned int *C1 = new unsigned int[m];
+    unsigned int *C2 = new unsigned int[m];
+    unsigned int *C3 = new unsigned int[m];
 
-    int* arreglos[3] = {C1,C2,C3};
+    unsigned int* arreglos[3] = {C1,C2,C3};
 
     //Se llena el arreglo N con los numeros del 1 al n
     iota(N, N + n, 1);
@@ -62,26 +63,36 @@ void main_splay(int exp_n, int ntest){
     //Un arreglo de los valores que debe tomar alpha
     double alphas[3]={0.5,1,1.5};
 
-    for(int i=0; i<3; i++) {
+    for(unsigned int i=0; i<3; i++) {
         //Se setea el apha correspondiente
         double alpha = alphas[i];
 
         //Se setea el SUM correspondiente
-        int suma = SUM(alpha,n);
+        unsigned int suma = SUM(alpha,n);
 
         //Puntero a la ubicación de C a escribir 
-            int ptr=0;
+        unsigned int ptr=0;
 
         //Para cada elemento de la permutacion
-        for(int j=0; j<n; j++){
+        for(unsigned int j=0; j<n; j++){
             //Lo escribimos phi(i) veces en C
-            for(int p=phi(i, alpha, n); p>0; p--){
+            for(unsigned int p=phi(j, alpha, n); p>0; p--){
                 //Escribimos en C
-                arreglos[i][ptr]=pi[i];
+                arreglos[i][ptr]=pi[j];
                 //Aumentamos el puntero
+                if (ptr >= m) {
+                    break;
+                }
                 ptr++;
             }
+            if (ptr >= m) {
+                break;
+            }
         }
+        for(int k=ptr; k<m; k++){
+            arreglos[i][k]=arreglos[i][k-1];
+        }
+
     }
 
     //Se desordenan los arreglos
@@ -91,7 +102,7 @@ void main_splay(int exp_n, int ntest){
 
     //Se crea el arbol
     node *root = insert(NULL, 1);
-    for(int i=0; i<n; i++){
+    for(unsigned int i=0; i<n; i++){
         root = insert(root, N[i]);
     }
 
@@ -102,7 +113,7 @@ void main_splay(int exp_n, int ntest){
     auto inicio1 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo C1 en el árbol
-    for(int i=0; i<m; i++){
+    for(unsigned int i=0; i<m; i++){
         search(root, C1[i]);
     }
 
@@ -119,7 +130,7 @@ void main_splay(int exp_n, int ntest){
     auto inicio2 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo C2 en el árbol
-    for(int i=0; i<m; i++){
+    for(unsigned int i=0; i<m; i++){
         search(root, C2[i]);
     }
 
@@ -136,7 +147,7 @@ void main_splay(int exp_n, int ntest){
     auto inicio3 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo C3 en el árbol
-    for(int i=0; i<m; i++){
+    for(unsigned int i=0; i<m; i++){
         search(root, C3[i]);
     }
 
@@ -164,17 +175,17 @@ void main_splay(int exp_n, int ntest){
     res15[ntest]=duracionC3;
 }
 
-void main_RBTree(int exp_n , int ntest){
-    int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
-    int *pi = new int[n];
-    int *N = new int[n];
+void main_RBTree(unsigned int exp_n , unsigned int ntest){
+    unsigned int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
+    unsigned int *pi = new unsigned int[n];
+    unsigned int *N = new unsigned int[n];
 
     //Crear tres arreglos de tamaño M
-    int *C1 = new int[m];
-    int *C2 = new int[m];
-    int *C3 = new int[m];
+    unsigned int *C1 = new unsigned int[m];
+    unsigned int *C2 = new unsigned int[m];
+    unsigned int *C3 = new unsigned int[m];
 
-    int* arreglos[3] = {C1,C2,C3};
+    unsigned int* arreglos[3] = {C1,C2,C3};
 
     //Se llena el arreglo N con los numeros del 1 al n
     iota(N, N + n, 1);
@@ -191,20 +202,20 @@ void main_RBTree(int exp_n , int ntest){
     //Un arreglo de los valores que debe tomar alpha
     double alphas[3]={0.5,1,1.5};
 
-    for(int i=0; i<3; i++) {
+    for(unsigned int i=0; i<3; i++) {
         //Se setea el apha correspondiente
         double alpha= alphas[i];
 
         //Se setea el SUM correspondiente
-        int suma = SUM(alpha,n);
+        unsigned int suma = SUM(alpha,n);
 
         //Puntero a la ubicación de C a escribir 
-            int ptr=0;
+            unsigned int ptr=0;
 
         //Para cada elemento de la permutacion
-        for(int j=0; j<n; j++){
+        for(unsigned int j=0; j<n; j++){
             //Lo escribimos phi(i) veces en C
-            for(int p=phi(i, alpha, n); p>0; p--){
+            for(unsigned int p=phi(i, alpha, n); p>0; p--){
                 //Escribimos en C
                 arreglos[i][ptr]=pi[i];
                 //Aumentamos el puntero
@@ -220,7 +231,7 @@ void main_RBTree(int exp_n , int ntest){
 
     //Se crea el arbol
     RBTree tree;
-    for (int i=0; i<n; i++){
+    for (unsigned int i=0; i<n; i++){
         tree.insert(N[i]);
     }
 
@@ -231,7 +242,7 @@ void main_RBTree(int exp_n , int ntest){
     auto inicio1 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo M en el arbol
-    for(int i=0; i<m; i++){
+    for(unsigned int i=0; i<m; i++){
         searchRBT(tree.root, C1[i]);
     }
 
@@ -248,7 +259,7 @@ void main_RBTree(int exp_n , int ntest){
     auto inicio2 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo M en el arbol
-    for(int i=0; i<m; i++){
+    for(unsigned int i=0; i<m; i++){
         searchRBT(tree.root, C2[i]);
     }
 
@@ -265,7 +276,7 @@ void main_RBTree(int exp_n , int ntest){
     auto inicio3 = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo M en el arbol
-    for(int i=0; i<m; i++){
+    for(unsigned int i=0; i<m; i++){
         searchRBT(tree.root, C3[i]);
     }
 
@@ -291,15 +302,13 @@ void main_RBTree(int exp_n , int ntest){
     resRBT05[ntest] = duracionC1;
     resRBT1[ntest] = duracionC2;
     resRBT15[ntest] = duracionC3;
-    
-    
 }
 
 
 //Calcula el promedio de los tiempos de ejecución
-float promedio(float res[], int n){
+float promedio(float res[], unsigned int n){
     float promedio = 0;
-    for (int i=0; i<n; i++){
+    for (unsigned int i=0; i<n; i++){
         promedio += res[i];
         promedio /= n;
     }
@@ -307,9 +316,9 @@ float promedio(float res[], int n){
 }
 
 //Calcula la varianza de los tiempos de ejecución
-float varianza(float res[], float promedio, int n){
+float varianza(float res[], float promedio, unsigned int n){
     float varianza = 0;
-    for (int i=0; i<n; i++){
+    for (unsigned int i=0; i<n; i++){
         varianza += pow(res[i]-promedio, 2);
         varianza /= n;
     }
@@ -322,7 +331,7 @@ float desviacion(float varianza){
 
 int main(){
     //Testeamos 5 veces para el n dado indica 2^n
-    int n;
+    unsigned int n;
     resRBT05 = new float[n_test];
     resRBT1 = new float[n_test];
     resRBT15 = new float[n_test];
@@ -334,7 +343,7 @@ int main(){
     fclose(f);
     FILE *g = fopen("Result_Splay_Skew.txt", "w+"); //write
     fclose(g);
-    for(int i=2; i<4; i++){
+    for(unsigned int i=2; i<4; i++){
         n=i;
         printf("Para n = %d:\n", n);
         FILE *f = fopen("Result_RB_Skew.txt", "a"); //append
@@ -344,7 +353,7 @@ int main(){
         fclose(f);
         fclose(g);
         
-        for (int j=0; j<n_test; j++){
+        for (unsigned int j=0; j<n_test; j++){
             
             printf("Test %d:\n", j+1);
             f = fopen("Result_RB_Skew.txt", "a"); //append

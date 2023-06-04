@@ -1,0 +1,19 @@
+Para n = 2^2:
+Test 1:
+La busqueda tardo 2609 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 1653 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 2559 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 2273.666748
+Varianza de SplayTree: 193030.234375
+Desviacion estandar de SplayTree: 439.352051
+
+Para n = 2^3:
+Test 1:
+La busqueda tardo 1169 milisegundos en ejecutarse.
+
+Test 2:

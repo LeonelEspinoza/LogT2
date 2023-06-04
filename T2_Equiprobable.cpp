@@ -6,16 +6,14 @@
 #include <redblacktree.h>
 #include <splaytree.h>
 
-static const int m = pow(2,28); //Tamaño del arreglo de la secuencia de búsqueda M
+static const unsigned int m = pow(2,28); //Tamaño del arreglo de la secuencia de búsqueda M
 using namespace std;
-int n_test=3;
-float *res; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para RBTree
-float *res2; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para SplayTree
+unsigned int n_test=3;
 
-void main_splay(int exp_n, int j){
-    int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
-    int *N = new int[n];
-    int *M = new int[m];
+void main_splay(unsigned int exp_n, unsigned int j, float resultados_splay[]){
+    unsigned int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
+    unsigned int *N = new unsigned int[n];
+    unsigned int *M = new unsigned int[m];
 
     //Se llena el arreglo N con los numeros del 1 al n
     iota(N, N + n, 1);
@@ -24,10 +22,10 @@ void main_splay(int exp_n, int j){
     shuffle(N, N + n, mt19937{random_device{}()});   
 
     //Se llena el arreglo M con los numeros del 1 al n, repitiendose 2^28/n veces cada número
-    int repeticiones_n = pow(2, 28-exp_n);
-    int puntero = 0;
-    for(int i=1; i<=n; i++){
-        for(int j=0; j<repeticiones_n; j++){
+    unsigned int repeticiones_n = pow(2, 28-exp_n);
+    unsigned int puntero = 0;
+    for(unsigned int i=1; i<=n; i++){
+        for(unsigned int j=0; j<repeticiones_n; j++){
             M[puntero++] = i;
         }
     }
@@ -37,7 +35,7 @@ void main_splay(int exp_n, int j){
 
     //Se crea el arbol
     node *root = insert(NULL, 1);
-    for(int i=0; i<n; i++){
+    for(unsigned int i=0; i<n; i++){
         root = insert(root, N[i]);
     }
 
@@ -48,7 +46,7 @@ void main_splay(int exp_n, int j){
     auto inicio = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo M en el arbol
-    for(int i=0; i<m; i++){
+    for(unsigned int i=0; i<m; i++){
         search(root, M[i]);
     }
 
@@ -60,39 +58,22 @@ void main_splay(int exp_n, int j){
     //Se calcula el tiempo transcurrido
     auto duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
 
-
-    //Se guarda el resultado en el arreglo de resultados
-    //res[j] = int(duracion);
-
     printf("Caso SplayTree:\n");
     printf("La busqueda tardo %ld milisegundos en ejecutarse.\n", duracion);
-    res2[j] = duracion;
+
+    //Se guarda el resultado en el arreglo de resultados
+    resultados_splay[j] = duracion;
+
     FILE *g = fopen("Result_Splay_Equiprobable.txt", "a"); //append
-    //fprintf(f, "Test %d:\n", j+1);
     fprintf(g, "La busqueda tardo %ld milisegundos en ejecutarse.\n\n", duracion);
     fclose(g);
-
-
-    /*
-    Por ahora sin txt para que veamos si funciona
-    //Se abre el archivo donde se guardarán los tiempos
-    FILE *f = fopen("resultados.txt", "a"); //append
-
-    //Se escribe el numero del test
-    fprintf(f, "Test %d:\n", j+1);
-
-    //Se escribe el tiempo en el archivo
-    fprintf(f, "La búsqueda tardó %ld milisegundos en ejecutarse.\n\n", duracion);
-
-    //Se cierra el archivo
-    fclose(f);*/
 }
 
 
-void main_RBTree(int exp_n, int j){
-    int n = pow(2, exp_n); //Tamaño del arreglo de los elementos que se insertarán en el árbol
+void main_RBTree(unsigned int exp_n, unsigned int j, float resultados_RB[]){
+    unsigned int n = pow(2, exp_n); //Tamaño del arreglo de los elementos que se insertarán en el árbol
 
-    int *N = new int[n];
+    unsigned int *N = new unsigned int[n];
     
 
     //Se llena el arreglo N con los numeros del 1 al n
@@ -102,13 +83,13 @@ void main_RBTree(int exp_n, int j){
     shuffle(N, N + n, mt19937{random_device{}()});    
 
     //Se llena el arreglo M con los numeros del 1 al n, repitiendose 2^28/n veces cada número
-    int repeticiones_n = pow(2, 28-exp_n);
-    int puntero = 0;
+    unsigned int repeticiones_n = pow(2, 28-exp_n);
+    unsigned int puntero = 0;
 
-    int *M = new int[m];
+    unsigned int *M = new unsigned int[m];
 
-    for(int i=1; i<=n; i++){
-        for(int j=0; j<repeticiones_n; j++){
+    for(unsigned int i=1; i<=n; i++){
+        for(unsigned int j=0; j<repeticiones_n; j++){
             M[puntero++] = i;
         }
     }
@@ -118,7 +99,7 @@ void main_RBTree(int exp_n, int j){
 
     //Se crea el arbol
     RBTree tree;
-    for (int i=0; i<n; i++){
+    for (unsigned int i=0; i<n; i++){
         tree.insert(N[i]);
     }
 
@@ -130,7 +111,7 @@ void main_RBTree(int exp_n, int j){
     auto inicio = chrono::high_resolution_clock::now();
 
     //Se busca cada elemento del arreglo M en el arbol
-    for(int i=0; i<m; i++){
+    for(unsigned int i=0; i<m; i++){
         searchRBT(tree.root, M[i]);
     }
     
@@ -146,7 +127,7 @@ void main_RBTree(int exp_n, int j){
     //Se printea
     printf("Caso RBTree:\n");
     cout << "La busqueda tardo " << duracion << " milisegundos en ejecutarse." << endl;
-    res[j] = duracion;
+    resultados_RB[j] = duracion;
     FILE *f = fopen("Result_RB_Equiprobable.txt", "a"); //append
     //fprintf(f, "Test %d:\n", j+1);
     fprintf(f, "La busqueda tardo %ld milisegundos en ejecutarse.\n\n", duracion);
@@ -156,20 +137,20 @@ void main_RBTree(int exp_n, int j){
 //Calcula el promedio de los tiempos de ejecución
 float promedio(float res[]){
     float promedio = 0;
-    for (int i=0; i<n_test; i++){
+    for (unsigned int i=0; i<n_test; i++){
         promedio += res[i];
-        promedio /= n_test;
     }
+    promedio /= n_test;
     return promedio;
 }
 
 //Calcula la varianza de los tiempos de ejecución
 float varianza(float res[], float promedio){
     float varianza = 0;
-    for (int i=0; i<n_test; i++){
+    for (unsigned int i=0; i<n_test; i++){
         varianza += pow(res[i]-promedio, 2);
-        varianza /= n_test;
     }
+    varianza /= n_test;
     return varianza;
 }
 
@@ -179,25 +160,25 @@ float desviacion(float varianza){
 }
 
 int main(){
-    //Testeamos 5 veces para el n dado indica 2^n
-    res = new float[n_test];
-    res2 = new float[n_test];
-    int n;
+    //Testeamos 3 veces para cada potencia de 2
+    unsigned int n;
     FILE *f = fopen("Result_RB_Equiprobable.txt", "w+"); //write
     fclose(f);
     FILE *g = fopen("Result_Splay_Equiprobable.txt", "w+"); //write
     fclose(g);
-    for(int i=2; i<4; i++){
+    for(unsigned int i=2; i<4; i++){
+        float resultados_RB[n_test]; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para RBTree
+        float resultados_splay[n_test]; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para SplayTree
         n=i;
-        printf("Para n = %d:\n", n);
+        printf("Para n = 2^%d:\n", n);
         f = fopen("Result_RB_Equiprobable.txt", "a"); //append
         g = fopen("Result_Splay_Equiprobable.txt", "a"); //append
-        fprintf(f, "Para n = %d:\n", n);
-        fprintf(g, "Para n = %d:\n", n);
+        fprintf(f, "Para n = 2^%d:\n", n);
+        fprintf(g, "Para n = 2^%d:\n", n);
         fclose(f);
         fclose(g);
         
-        for (int j=0; j<n_test; j++){
+        for (unsigned int j=0; j<n_test; j++){
             printf("Test %d:\n", j+1);
             f = fopen("Result_RB_Equiprobable.txt", "a"); //append
             g = fopen("Result_Splay_Equiprobable.txt", "a"); //append
@@ -205,25 +186,22 @@ int main(){
             fprintf(g, "Test %d:\n", j+1);
             fclose(f);
             fclose(g);
-            main_RBTree(n,j);
-            main_splay(n,j);
+            main_RBTree(n,j,resultados_RB);
+            main_splay(n,j,resultados_splay);
         }
         f = fopen("Result_RB_Equiprobable.txt", "a"); //append
         g = fopen("Result_Splay_Equiprobable.txt", "a"); //append
-        float promedio1 = promedio(res);
+        float promedio1 = promedio(resultados_RB);
         fprintf(f, "Promedio de RBTree: %f\n", promedio1);
-        fprintf(f, "Varianza de RBTree: %f\n", varianza(res, promedio1));
-        fprintf(f, "Desviacion estandar de RBTree: %f\n\n", desviacion(varianza(res, promedio1)));
-        float promedio2 = promedio(res2);
+        fprintf(f, "Varianza de RBTree: %f\n", varianza(resultados_RB, promedio1));
+        fprintf(f, "Desviacion estandar de RBTree: %f\n\n", desviacion(varianza(resultados_RB, promedio1)));
+        float promedio2 = promedio(resultados_splay);
         fprintf(g, "Promedio de SplayTree: %f\n", promedio2);
-        fprintf(g, "Varianza de SplayTree: %f\n", varianza(res2, promedio2));
-        fprintf(g, "Desviacion estandar de SplayTree: %f\n\n", desviacion(varianza(res2, promedio2)));
+        fprintf(g, "Varianza de SplayTree: %f\n", varianza(resultados_splay, promedio2));
+        fprintf(g, "Desviacion estandar de SplayTree: %f\n\n", desviacion(varianza(resultados_splay, promedio2)));
         fclose(f);
         fclose(g);
     }
-
-    delete[] res;
-    delete[] res2;
 
     return 0;
 }
