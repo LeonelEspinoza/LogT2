@@ -9,4 +9,8 @@ make run-equiprobable: Ejecuta el programa de la p1 que consiste en el arreglo e
 
 make run-skew: Ejecuta el programa de la p2 que consiste en el arreglo skew.
 
+make compile-e: Compila el programa de la p1.
+
+make compile-s: Compila el programa de la p2.
+
 #-------------------#

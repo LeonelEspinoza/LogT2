@@ -5,10 +5,11 @@ Integrantes:
 + Nicolás Calbucura  
 + Leonel Espinoza
 
-### Debes correr el siguiente comando para compilar el proyecto:
+### Debes correr el siguiente comando para compilar el proyecto con cmake/make:
 > cmake -B build -S .
 
 Posteriormente, debes correr make en la carpeta build.
+
 
 #### Via comando:
 Para compilar si no tienes cmake/make:
