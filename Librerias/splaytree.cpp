@@ -177,6 +177,15 @@ void preOrder(node *root)
 }
 
 
+//Clean el arbol
+void cleanSplay(node *root){
+    if(root != NULL){
+        cleanSplay(root->left);
+        cleanSplay(root->right);
+        delete root;
+    }
+}
+
 /* Driver code*/
 /*
 int main()

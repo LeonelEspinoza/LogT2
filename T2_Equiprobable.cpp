@@ -55,6 +55,9 @@ void main_splay(unsigned int exp_n, unsigned int j, float resultados_splay[]){
     //Se libera la memoria de M
     delete[] M;
 
+    //Clean el arbol splay
+    cleanSplay(root);
+
     //Se calcula el tiempo transcurrido
     auto duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
 
@@ -120,6 +123,9 @@ void main_RBTree(unsigned int exp_n, unsigned int j, float resultados_RB[]){
     
     //Se libera la memoria de M
     delete[] M;
+    
+    //Se limpia el arbol
+    cleanRBT(tree.root);
     
     //Se calcula el tiempo transcurrido
     auto duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();

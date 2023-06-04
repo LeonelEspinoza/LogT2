@@ -270,6 +270,15 @@ Node *searchRBT(Node *root, int key)
     }
 }
 
+void *cleanRBT(Node *root)
+{
+    if (root == NULL)
+        return NULL;
+    cleanRBT(root->left);
+    cleanRBT(root->right);
+    delete root;
+    return NULL;
+}
 // Driver Code
 /*
 int main()
