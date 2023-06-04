@@ -46,4 +46,12 @@ add_custom_target(compile-e
 #Para compilar el programa skew
 add_custom_target(compile-s
     COMMAND make T2_Skew
-    WORKING_DIRECTORY ${CMAKE_PROJECT_DIR})    
+    WORKING_DIRECTORY ${CMAKE_PROJECT_DIR})
+
+#Para compilar y correr ambos programas
+add_custom_target(run
+    COMMAND make T2_Equiprobable
+    COMMAND make T2_Skew
+    COMMAND ./T2_Equiprobable
+    COMMAND ./T2_Skew
+    WORKING_DIRECTORY ${CMAKE_PROJECT_DIR})

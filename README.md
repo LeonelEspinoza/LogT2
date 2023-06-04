@@ -17,4 +17,4 @@ Para compilar si no tienes cmake/make:
 >  g++ -O3 -I Librerias T2_Equiprobable.cpp Librerias/redblacktree.cpp Librerias/splaytree.cpp -o T2_Equiprobable.exe
 
 - La tarea Skew:
->  g++ -O3 -I Librerias T2_Skew.cpp Librerias/redblacktree.cpp Librerias/splaytree.cpp -o Tarea2_Skew.exe
+>  g++ -O3 -I Librerias T2_Skew.cpp Librerias/redblacktree.cpp Librerias/splaytree.cpp -o T2_Skew.exe
