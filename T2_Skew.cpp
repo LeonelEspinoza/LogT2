@@ -148,6 +148,8 @@ void main_splay(int exp_n, int ntest){
 
     //Se libera la memoria de C3
     delete[] C3;
+    //clean el arbol splay
+    cleanSplay(root);
 
     printf("Caso SplayTree:\n");
     printf("La busqueda para alfa = 0.5 tardo %ld milisegundos en ejecutarse.\n", duracionC1);
@@ -277,6 +279,9 @@ void main_RBTree(int exp_n , int ntest){
 
     //Se libera la memoria de C3
     delete[] C3;
+    
+    //Se limpia el arbol
+    cleanRBT(tree.root);
 
     printf("Caso RBtree:\n");
     printf("La busqueda para alfa = 0.5 tardo %ld milisegundos en ejecutarse.\n", duracionC1);

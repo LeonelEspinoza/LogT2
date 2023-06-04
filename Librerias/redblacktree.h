@@ -45,4 +45,7 @@ void inorderHelper(Node root);
 Node BSTInsert(Node* root, Node *pt);
 void levelOrderHelper(Node *root);
 
+// Clean
+void cleanRBT(Node *root);
+
 #endif // RBTREE_H

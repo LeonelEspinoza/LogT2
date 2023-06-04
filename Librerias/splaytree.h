@@ -18,4 +18,7 @@ node* search(node* root, int key);
 node* insert(node* root, int k);
 void preOrder(node* root);
 
+//Clean el arbol
+void cleanSplay(node *root);
+
 #endif /* SPLAYTREE_H */
