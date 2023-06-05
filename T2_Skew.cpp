@@ -114,7 +114,7 @@ void main_splay(unsigned int exp_n, unsigned int ntest){
 
     //Se busca cada elemento del arreglo C1 en el árbol
     for(unsigned int i=0; i<m; i++){
-        search(root, C1[i]);
+        root = search(root, C1[i]);
     }
 
     //Se finaliza el cronometro
@@ -131,7 +131,7 @@ void main_splay(unsigned int exp_n, unsigned int ntest){
 
     //Se busca cada elemento del arreglo C2 en el árbol
     for(unsigned int i=0; i<m; i++){
-        search(root, C2[i]);
+        root = search(root, C2[i]);
     }
 
     //Se finaliza el cronometro
@@ -148,7 +148,7 @@ void main_splay(unsigned int exp_n, unsigned int ntest){
 
     //Se busca cada elemento del arreglo C3 en el árbol
     for(unsigned int i=0; i<m; i++){
-        search(root, C3[i]);
+        root = search(root, C3[i]);
     }
 
     //Se finaliza el cronometro

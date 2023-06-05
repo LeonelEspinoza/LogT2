@@ -5,17 +5,17 @@
 
 class node {
 public:
-    int key;
+    unsigned int key;
     node* left;
     node* right;
 };
 
-node* newNode(int key);
+node* newNode(unsigned int key);
 node* rightRotate(node* x);
 node* leftRotate(node* x);
-node* splay(node* root, int key);
-node* search(node* root, int key);
-node* insert(node* root, int k);
+node* splay(node* root, unsigned int key);
+node* search(node* root, unsigned int key);
+node* insert(node* root, unsigned int k);
 void preOrder(node* root);
 
 //Clean el arbol

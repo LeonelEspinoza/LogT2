@@ -6,14 +6,14 @@ using namespace std;
 class node
 {
     public:
-    int key;
+    unsigned int key;
     node *left, *right;
 };
  
 /* Helper function that allocates
 a new node with the given key and
     NULL left and right pointers. */
-node* newNode(int key)
+node* newNode(unsigned int key)
 {
     node* Node = new node();
     Node->key = key;
@@ -49,7 +49,7 @@ node *leftRotate(node *x)
 // brings the last accessed item at
 // root. This function modifies the
 // tree and returns the new root
-node *splay(node *root, int key)
+node *splay(node *root, unsigned int key)
 {
     // Base cases: root is NULL or
     // key is present at root
@@ -119,14 +119,14 @@ node *splay(node *root, int key)
 // Note that this function returns the
 // new root of Splay Tree. If key is
 // present in tree then, it is moved to root.
-node *search(node *root, int key)
+node *search(node *root, unsigned int key)
 {
     return splay(root, key);
 }
 
 // Function to insert a new key k
 // in splay tree with given root
-node *insert(node *root, int k)
+node *insert(node *root, unsigned int k)
 {
     // Simple Case: If tree is empty
     if (root == NULL) return newNode(k);
@@ -187,16 +187,27 @@ void cleanSplay(node *root){
 }
 
 /* Driver code*/
-/*
-int main()
-{
-    node *root = insert(NULL, 100);
-    root=insert(root, 50);
-    root=insert(root, 200);
-    root=insert(root, 20);
-    cout<<"Preorder traversal of the modified Splay tree is \n";
-    preOrder(root);
-    return 0;
-}*/ 
+
+// int main()
+// {
+//     node *root = insert(NULL, 100);
+//     unsigned int *A = new unsigned int[5];
+//     A[0] = 50;
+//     A[1] = 200;
+//     A[2] = 20;
+//     A[3] = 40;
+//     A[4] = 150;
+//     root=insert(root, A[0]);
+//     root=insert(root, A[1]);
+//     root=insert(root, A[2]);
+//     root=insert(root, A[3]);
+//     root=insert(root, A[4]);
+//     node *ola=search(root, 40);
+//     cout<<"Preorder traversal of the modified Splay tree is \n";
+//     preOrder(root);
+//     cout<<"\nbuscado: \n";
+//     preOrder(ola);
+//     return 0;
+// }
  
 // This code is contributed by rathbhupendra

@@ -47,7 +47,7 @@ void main_splay(unsigned int exp_n, unsigned int j, float resultados_splay[]){
 
     //Se busca cada elemento del arreglo M en el arbol
     for(unsigned int i=0; i<m; i++){
-        search(root, M[i]);
+        root=search(root, M[i]);
     }
 
     //Se finaliza el cronometro
@@ -135,7 +135,7 @@ void main_RBTree(unsigned int exp_n, unsigned int j, float resultados_RB[]){
     cout << "La busqueda tardo " << duracion << " milisegundos en ejecutarse." << endl;
     resultados_RB[j] = duracion;
     FILE *f = fopen("Result_RB_Equiprobable.txt", "a"); //append
-    //fprintf(f, "Test %d:\n", j+1);
+    fprintf(f, "Test %d:\n", j+1);
     fprintf(f, "La busqueda tardo %ld milisegundos en ejecutarse.\n\n", duracion);
     fclose(f);
 }

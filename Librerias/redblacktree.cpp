@@ -9,12 +9,12 @@ enum Color {RED, BLACK};
  
 struct Node
 {
-    int data;
+    unsigned int data;
     bool color;
     Node *left, *right, *parent;
  
     // Constructor
-    Node(int data)
+    Node(unsigned int data)
     {
        this->data = data;
        left = right = parent = NULL;
@@ -33,7 +33,7 @@ protected:
 public:
     // Constructor
     RBTree() { root = NULL; }
-    void insert(const int &n);
+    void insert(const unsigned int &n);
     void inorder();
     void levelOrder();
 
@@ -239,7 +239,7 @@ void RBTree::fixViolation(Node *&root, Node *&pt)
 }
  
 // Function to insert a new node with given data
-void RBTree::insert(const int &data)
+void RBTree::insert(const unsigned int &data)
 {
     Node *pt = new Node(data);
  
@@ -255,7 +255,7 @@ void RBTree::inorder()     {  inorderHelper(root);}
 void RBTree::levelOrder()  {  levelOrderHelper(root); }
 
 // Function to search a given value
-Node *searchRBT(Node *root, int key)
+Node *searchRBT(Node *root, unsigned int key)
 {
     // Base Cases: root is null or key is present at root
     if (root == NULL || root->data == key)
@@ -281,7 +281,7 @@ void *cleanRBT(Node *root)
 }
 // Driver Code
 /*
-int main()
+unsigned int main()
 {
     RBTree tree;
  

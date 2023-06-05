@@ -9,11 +9,11 @@ enum Color {RED, BLACK};
 
 struct Node
 {
-int data;
+unsigned int data;
 bool color;
 Node *left, *right, *parent;
 // Constructor
-Node(int data)
+Node(unsigned int data)
 {
     this->data = data;
     left = right = parent = NULL;
@@ -34,11 +34,11 @@ public:
 // Constructor
 RBTree() { root = NULL; }
 
-void insert(const int &n);
+void insert(const unsigned int &n);
 void inorder();
 void levelOrder();
 };
-Node *searchRBT(Node *root, int key);
+Node *searchRBT(Node *root, unsigned int key);
 
 // Utility functions
 void inorderHelper(Node root);
