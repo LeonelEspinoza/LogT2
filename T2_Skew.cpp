@@ -331,18 +331,6 @@ void main_both(unsigned int exp_n, unsigned int ntest){
 
     //Se permuta el arreglo pi de manera aleatoria
     shuffle(pi, pi + n, mt19937{random_device{}()});
-    
-    //Se crea el arbol splay
-    node *root = insert(NULL, 1);
-    for(unsigned int i=0; i<n; i++){
-        root = insert(root, pi[i]);
-    }
-
-    //Se crea el arbol RB
-    RBTree tree;
-    for (unsigned int i=0; i<n; i++){
-        tree.insert(pi[i]);
-    }
 
     //Un arreglo de los valores que debe tomar alpha
     float alphas[3]={0.5,1,1.5};
@@ -352,6 +340,19 @@ void main_both(unsigned int exp_n, unsigned int ntest){
 
     //para cada valor de alpha o para cada arreglo
     for(unsigned int i=0; i<3; i++) {
+
+        //Se crea el arbol splay
+        node *root = insert(NULL, 1);
+        for(unsigned int i=0; i<n; i++){
+            root = insert(root, pi[i]);
+        }
+
+        //Se crea el arbol RB
+        RBTree tree;
+        for (unsigned int i=0; i<n; i++){
+            tree.insert(pi[i]);
+        }
+
         //Se setea el apha correspondiente
         double alpha = alphas[i];
 
