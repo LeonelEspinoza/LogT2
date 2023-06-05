@@ -1,4 +1,5 @@
 #include <iostream> // Para printear
+#include <fstream>
 #include <chrono>   // Para medir el tiempo 
 #include <math.h>   // Para pow (potencias)
 #include <algorithm> //Para lograr
@@ -18,7 +19,7 @@ float *res15;
 static const unsigned int m=pow(2,28);
 
 unsigned int f(unsigned int i, double alpha){
-    unsigned int res = (int) pow(i,alpha);
+    unsigned int res = (unsigned int) pow(i,alpha);
     return res;
 }
 
@@ -63,6 +64,7 @@ void main_splay(unsigned int exp_n, unsigned int ntest){
     //Un arreglo de los valores que debe tomar alpha
     double alphas[3]={0.5,1,1.5};
 
+    //para cada valor de alpha o para cada arreglo
     for(unsigned int i=0; i<3; i++) {
         //Se setea el apha correspondiente
         double alpha = alphas[i];
@@ -79,16 +81,19 @@ void main_splay(unsigned int exp_n, unsigned int ntest){
             for(unsigned int p=phi(j, alpha, n); p>0; p--){
                 //Escribimos en C
                 arreglos[i][ptr]=pi[j];
-                //Aumentamos el puntero
+                //Si el puntero es mayor al tamaño de C, break
                 if (ptr >= m) {
                     break;
                 }
+                //Aumentamos ptr
                 ptr++;
             }
+            //Si ptr es mayor al tamaño de C, break
             if (ptr >= m) {
                 break;
             }
         }
+        //Si termino el ciclo pero C no esta lleno rellenarlo con el último valor escrito
         for(int k=ptr; k<m; k++){
             arreglos[i][k]=arreglos[i][k-1];
         }
@@ -217,9 +222,9 @@ void main_RBTree(unsigned int exp_n , unsigned int ntest){
         //Para cada elemento de la permutacion
         for(unsigned int j=0; j<n; j++){
             //Lo escribimos phi(i) veces en C
-            for(unsigned int p=phi(i, alpha, n); p>0; p--){
+            for(unsigned int p=phi(j, alpha, n); p>0; p--){
                 //Escribimos en C
-                arreglos[i][ptr]=pi[i];
+                arreglos[i][ptr]=pi[j];
                 //Aumentamos el puntero
                 ptr++;
             }
@@ -310,6 +315,151 @@ void main_RBTree(unsigned int exp_n , unsigned int ntest){
 }
 
 
+void main_both(unsigned int exp_n, unsigned int ntest){
+    unsigned int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
+    unsigned int *pi = new unsigned int[n];
+
+    //Crear tres arreglos de tamaño M
+    unsigned int *C1 = new unsigned int[m];
+    unsigned int *C2 = new unsigned int[m];
+    unsigned int *C3 = new unsigned int[m];
+
+    unsigned int* arreglos[3] = {C1,C2,C3};
+
+    //Se llena el arreglo pi con los numeros del 1 al n
+    iota(pi, pi + n, 1);
+
+    //Se permuta el arreglo pi de manera aleatoria
+    shuffle(pi, pi + n, mt19937{random_device{}()});
+    
+    //Se crea el arbol splay
+    node *root = insert(NULL, 1);
+    for(unsigned int i=0; i<n; i++){
+        root = insert(root, pi[i]);
+    }
+
+    //Se crea el arbol RB
+    RBTree tree;
+    for (unsigned int i=0; i<n; i++){
+        tree.insert(pi[i]);
+    }
+
+    //Un arreglo de los valores que debe tomar alpha
+    float alphas[3]={0.5,1,1.5};
+
+    int resRB[3]= {0};
+    int resSplay[3]= {0};
+
+    //para cada valor de alpha o para cada arreglo
+    for(unsigned int i=0; i<3; i++) {
+        //Se setea el apha correspondiente
+        double alpha = alphas[i];
+
+        //Se setea el SUM correspondiente
+        unsigned int suma = SUM(alpha,n);
+
+        //Puntero a la ubicación de C a escribir 
+        unsigned int ptr=0;
+
+        //Para cada elemento de la permutacion
+        for(unsigned int j=0; j<n; j++){
+            //Lo escribimos phi(i) veces en C
+            for(unsigned int p=phi(j, alpha, n); p>0; p--){
+                //Escribimos en C
+                arreglos[i][ptr]=pi[j];
+                //Si el puntero es mayor al tamaño de C, break
+                if (ptr >= m) {
+                    break;
+                }
+                //Aumentamos ptr
+                ptr++;
+            }
+            //Si ptr es mayor al tamaño de C, break
+            if (ptr >= m) {
+                break;
+            }
+        }
+        //Si termino el ciclo pero C no esta lleno rellenarlo con el último valor escrito
+        for(int k=ptr; k<m; k++){
+            arreglos[i][k]=arreglos[i][k-1];
+        }
+
+        //Aleatorizamos el arreglo C
+        shuffle(arreglos[i], arreglos[i] + m, mt19937{random_device{}()});
+        
+        //iniciamos el cronometro
+        auto inicio=chrono::high_resolution_clock::now();
+        //Buscamos en el SplayTree
+        for(int e=0; e<m;e++){
+            root = search(root, arreglos[i][e]);
+        }
+        //termina el cronometro
+        auto fin = chrono::high_resolution_clock::now();
+
+        //Se calcula el tiempo de la busqueda
+        auto duracionSplayC1 = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
+
+        //guardamos el tiempo transcurrido
+        resSplay[i]=duracionSplayC1;
+
+        //Se inicia el cronometro
+        inicio = chrono::high_resolution_clock::now();
+
+        //Se busca cada elemento del arreglo C1 en el árbol RB
+        for(int e=0; e<m; e++){
+            searchRBT(tree.root, arreglos[i][e]);
+        }
+
+        //Se finaliza el cronometro
+        fin = chrono::high_resolution_clock::now();
+
+        //Se calcula el tiempo transcurrido
+        auto duracionRBC1 = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
+
+        //Se guarda el tiempo transcurrido
+        resRB[i]=duracionRBC1;
+        delete[] arreglos[i];
+    }
+    
+    //clean el arbol splay
+    cleanSplay(root);
+
+    //Se limpia el arbol
+    cleanRBT(tree.root);
+
+    printf("Caso SplayTree:\n");
+    for(int i=0;i<3;i++){
+        cout << "La busqueda para alfa = " << alphas[i] << " tardo " << resSplay[i] <<  " milisegundos en ejecutarse.\n";    
+    }
+
+    printf("Caso RBtree:\n");
+    for(int i=0;i<3;i++){
+        cout << "La busqueda para alfa = " << alphas[i] << " tardo " << resRB[i] <<  " milisegundos en ejecutarse.\n";    
+    }
+
+    ofstream archivo;
+    archivo.open("Result_Splay_Skew.txt", fstream::app);
+    for(int i=0;i<3;i++){
+        archivo << "La busqueda para alfa = " << alphas[i] << " tardo " << resSplay[i] << " milisegundos en ejecutarse.\n";
+    }
+    archivo.close();
+
+    archivo.open("Result_RB_Skew.txt", fstream::app);
+    for(int i=0;i<3;i++){
+        archivo << "La busqueda para alfa = " << alphas[i] << " tardo " << resRB[i] << " milisegundos en ejecutarse.\n";
+    }
+    archivo.close();
+
+    resRBT05[ntest] = resRB[0];
+    resRBT1[ntest] = resRB[1];
+    resRBT15[ntest] = resRB[2];
+
+    res05[ntest]=resSplay[0];
+    res1[ntest]=resSplay[1];
+    res15[ntest]=resSplay[2];
+
+}
+
 //Calcula el promedio de los tiempos de ejecución
 float promedio(float res[], unsigned int n){
     float promedio = 0;
@@ -344,11 +494,13 @@ int main(){
     res1 = new float[n_test];
     res15 = new float[n_test];
 
+
     FILE *f = fopen("Result_RB_Skew.txt", "w+"); //write
     fclose(f);
     FILE *g = fopen("Result_Splay_Skew.txt", "w+"); //write
     fclose(g);
-    for(unsigned int i=16; i<25; i++){
+    
+    for(unsigned int i=16; i<=24; i++){
         n=i;
         printf("Para n = %d:\n", n);
         FILE *f = fopen("Result_RB_Skew.txt", "a"); //append
@@ -368,8 +520,10 @@ int main(){
             fclose(f);
             fclose(g);
                
-            main_RBTree(n,j);
-            main_splay(n,j);
+            main_both(n,j);
+
+            //main_RBTree(n,j);
+            //main_splay(n,j);
         }
         
         f = fopen("Result_RB_Skew.txt", "a"); //append
