@@ -1,0 +1,172 @@
+Para n = 2^16:
+Test 1:
+Caso RBTree:
+La busqueda tardo 14932 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1355 milisegundos en ejecutarse.
+Test 2:
+Caso RBTree:
+La busqueda tardo 23772 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 932 milisegundos en ejecutarse.
+Test 3:
+Caso RBTree:
+La busqueda tardo 26139 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1477 milisegundos en ejecutarse.
+Para n = 2^17:
+Test 1:
+Caso RBTree:
+La busqueda tardo 33702 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 956 milisegundos en ejecutarse.
+Test 2:
+Caso RBTree:
+La busqueda tardo 30193 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1476 milisegundos en ejecutarse.
+Test 3:
+Caso RBTree:
+La busqueda tardo 30358 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1077 milisegundos en ejecutarse.
+Para n = 2^18:
+Test 1:
+Caso RBTree:
+La busqueda tardo 49269 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1071 milisegundos en ejecutarse.
+Test 2:
+Caso RBTree:
+La busqueda tardo 36963 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 944 milisegundos en ejecutarse.
+Test 3:
+Caso RBTree:
+La busqueda tardo 39566 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 992 milisegundos en ejecutarse.
+Para n = 2^19:
+Test 1:
+Caso RBTree:
+La busqueda tardo 79335 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1209 milisegundos en ejecutarse.
+Test 2:
+Caso RBTree:
+La busqueda tardo 76782 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 979 milisegundos en ejecutarse.
+Test 3:
+Caso RBTree:
+La busqueda tardo 78889 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1499 milisegundos en ejecutarse.
+Para n = 2^20:
+Test 1:
+Caso RBTree:
+La busqueda tardo 118419 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1285 milisegundos en ejecutarse.
+Test 2:
+Caso RBTree:
+La busqueda tardo 118295 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1464 milisegundos en ejecutarse.
+Test 3:
+Caso RBTree:
+La busqueda tardo 122904 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1463 milisegundos en ejecutarse.
+Para n = 2^21:
+Test 1:
+Caso RBTree:
+La busqueda tardo 167451 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1378 milisegundos en ejecutarse.
+Test 2:
+Caso RBTree:
+La busqueda tardo 160876 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1207 milisegundos en ejecutarse.
+Test 3:
+Caso RBTree:
+La busqueda tardo 163395 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1440 milisegundos en ejecutarse.
+Para n = 2^22:
+Test 1:
+Caso RBTree:
+La busqueda tardo 217482 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1398 milisegundos en ejecutarse.
+Test 2:
+Caso RBTree:
+La busqueda tardo 232141 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1399 milisegundos en ejecutarse.
+Test 3:
+Caso RBTree:
+La busqueda tardo 237649 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 942 milisegundos en ejecutarse.
+Para n = 2^23:
+Test 1:
+Caso RBTree:
+La busqueda tardo 333670 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1109 milisegundos en ejecutarse.
+Test 2:
+Caso RBTree:
+La busqueda tardo 305196 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1178 milisegundos en ejecutarse.
+Test 3:
+Caso RBTree:
+La busqueda tardo 286577 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1347 milisegundos en ejecutarse.
+Para n = 2^24:
+Test 1:
+Caso RBTree:
+La busqueda tardo 416627 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1286 milisegundos en ejecutarse.
+Test 2:
+Caso RBTree:
+La busqueda tardo 389072 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1020 milisegundos en ejecutarse.
+Test 3:
+Caso RBTree:
+La busqueda tardo 391919 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 1125 milisegundos en ejecutarse.
+Para n = 16:
+Test 1:
+Caso RBtree:
+La busqueda para alfa = 0.5 tardo 3429 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 3426 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 3449 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda para alfa = 0.5 tardo 1016 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 926 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 926 milisegundos en ejecutarse.
+Test 2:
+Caso RBtree:
+La busqueda para alfa = 0.5 tardo 3917 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 3906 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 3918 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda para alfa = 0.5 tardo 989 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 922 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 923 milisegundos en ejecutarse.
+Test 3:
+Caso RBtree:
+La busqueda para alfa = 0.5 tardo 1820 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 1818 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 1823 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda para alfa = 0.5 tardo 1005 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 935 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 931 milisegundos en ejecutarse.

@@ -1,6 +1,28 @@
-Para n = 2:
+Para n = 16:
 Test 1:
-La busqueda para alfa = 0.5 tardo 1813 milisegundos en ejecutarse.
-La busqueda para alfa = 1.0 tardo 1371 milisegundos en ejecutarse.
-La busqueda para alfa = 1.5 tardo 1173 milisegundos en ejecutarse.
+La busqueda para alfa = 0.5 tardo 1016 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 926 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 926 milisegundos en ejecutarse.
 Test 2:
+La busqueda para alfa = 0.5 tardo 989 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 922 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 923 milisegundos en ejecutarse.
+Test 3:
+La busqueda para alfa = 0.5 tardo 1005 milisegundos en ejecutarse.
+La busqueda para alfa = 1.0 tardo 935 milisegundos en ejecutarse.
+La busqueda para alfa = 1.5 tardo 931 milisegundos en ejecutarse.
+
+
+Promedio de SplayTree para alfa = 0.5: 482.518524
+Varianza de SplayTree para alfa = 0.5: 130039.062500
+Desviacion estandar de SplayTree para alfa = 0.5: 360.609283
+
+Promedio de SplayTree para alfa = 1.0: 448.407379
+Varianza de SplayTree para alfa = 1.0: 112293.187500
+Desviacion estandar de SplayTree para alfa = 1.0: 335.101746
+
+Promedio de SplayTree para alfa = 1.5: 447.185181
+Varianza de SplayTree para alfa = 1.5: 111672.367188
+Desviacion estandar de SplayTree para alfa = 1.5: 334.174164
+Para n = 17:
+Test 1:

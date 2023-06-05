@@ -172,7 +172,7 @@ int main(){
     fclose(f);
     FILE *g = fopen("Result_Splay_Equiprobable.txt", "w+"); //write
     fclose(g);
-    for(unsigned int i=2; i<4; i++){
+    for(unsigned int i=16; i<25; i++){
         float resultados_RB[n_test]; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para RBTree
         float resultados_splay[n_test]; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para SplayTree
         n=i;

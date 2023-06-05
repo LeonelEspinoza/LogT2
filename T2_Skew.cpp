@@ -348,7 +348,7 @@ int main(){
     fclose(f);
     FILE *g = fopen("Result_Splay_Skew.txt", "w+"); //write
     fclose(g);
-    for(unsigned int i=2; i<4; i++){
+    for(unsigned int i=16; i<25; i++){
         n=i;
         printf("Para n = %d:\n", n);
         FILE *f = fopen("Result_RB_Skew.txt", "a"); //append
