@@ -352,6 +352,8 @@ void main_both(unsigned int exp_n, unsigned int ntest){
         for (unsigned int i=0; i<n; i++){
             tree.insert(pi[i]);
         }
+        
+        shuffle(pi, pi + n, mt19937{random_device{}()});
 
         //Se setea el apha correspondiente
         double alpha = alphas[i];
