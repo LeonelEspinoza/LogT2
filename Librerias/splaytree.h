@@ -16,7 +16,8 @@ node* leftRotate(node* x);
 node* splay(node* root, unsigned int key);
 node* search(node* root, unsigned int key);
 node* insert(node* root, unsigned int k);
-void preOrder(node* root);
+
+void preOrder(node* root); //para printear el arbol
 
 //Clean el arbol
 void cleanSplay(node *root);

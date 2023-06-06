@@ -35,13 +35,14 @@ public:
 RBTree() { root = NULL; }
 
 void insert(const unsigned int &n);
-void inorder();
+void inorder();//para printear el arbol
 void levelOrder();
 };
 Node *searchRBT(Node *root, unsigned int key);
 
 // Utility functions
-void inorderHelper(Node root);
+void inorderHelper(Node root); 
+
 Node BSTInsert(Node* root, Node *pt);
 void levelOrderHelper(Node *root);
 

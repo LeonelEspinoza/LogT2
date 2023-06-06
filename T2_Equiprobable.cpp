@@ -7,7 +7,8 @@
 #include <splaytree.h>
 #include <thread>
 
-static const unsigned int m = pow(2,28); //Tamaño del arreglo de la secuencia de búsqueda M
+
+static const unsigned int m = pow(2,4); //Tamaño del arreglo de la secuencia de búsqueda M
 using namespace std;
 unsigned int n_test=3;
 //Calcula el promedio de los tiempos de ejecución
@@ -70,7 +71,7 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     
     unsigned int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
     unsigned int *M;
-    unsigned int repeticiones_n = pow(2, 28-exp_n);
+    unsigned int repeticiones_n = pow(2, 4-exp_n); //chequear el m
     unsigned int puntero = 0;    
     thread t1;
     args *arg = new args;
@@ -78,6 +79,7 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     t1 = thread(thread_functionInitM, arg);    
     
     unsigned int *N = initN(n); 
+
 
     t1.join();
     M = arg->M;
@@ -104,6 +106,8 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     for(unsigned int i=0; i<n; i++){
         root = insert(root, N[i]);
     }
+    
+    //preOrder(root);
 
     //Se libera la memoria de N
     //delete[] N;
@@ -122,6 +126,9 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     for(unsigned int i=0; i<m; i++){
         root=search(root, M[i]);
     }
+    //printf("post search");
+    //preOrder(root);
+
     //Se finaliza el cronometro
     auto fin = chrono::high_resolution_clock::now();
     //Clean el arbol splay
@@ -141,10 +148,21 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
 
     //N = initN(n);
     //Se crea el arbol
+    //printf("printeamos n");
+    //for (unsigned int i; i<n;i++){
+    //    printf(" %d ", N[i]);
+    //}
+
     RBTree tree;
+    //tree.inorder();
     for (unsigned int i=0; i<n; i++){
+        //printf("\n");
         tree.insert(N[i]);
+        //tree.inorder();
+        //printf("\n");
     }
+    //printf("para printear el arbol");
+    //
 
     delete[] N;
     
@@ -273,7 +291,7 @@ int main(){
     fclose(f);
     FILE *g = fopen("Result_Splay_Equiprobable.txt", "w+"); //write
     fclose(g);
-    for(unsigned int i=16; i<25; i++){
+    for(unsigned int i=3; i<4; i++){
         float resultados_RB[n_test]; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para RBTree
         float resultados_splay[n_test]; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para SplayTree
         n=i;
