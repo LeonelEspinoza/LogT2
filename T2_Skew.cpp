@@ -167,10 +167,11 @@ void main_splay(unsigned int exp_n, unsigned int ntest){
     //clean el arbol splay
     cleanSplay(root);
 
-    printf("Caso SplayTree:\n");
-    printf("La busqueda para alfa = 0.5 tardo %ld milisegundos en ejecutarse.\n", duracionC1);
-    printf("La busqueda para alfa = 1.0 tardo %ld milisegundos en ejecutarse.\n", duracionC2);
-    printf("La busqueda para alfa = 1.5 tardo %ld milisegundos en ejecutarse.\n", duracionC3);
+    cout << "." ;
+    //printf("Caso SplayTree:\n");
+    //printf("La busqueda para alfa = 0.5 tardo %ld milisegundos en ejecutarse.\n", duracionC1);
+    //printf("La busqueda para alfa = 1.0 tardo %ld milisegundos en ejecutarse.\n", duracionC2);
+    //printf("La busqueda para alfa = 1.5 tardo %ld milisegundos en ejecutarse.\n", duracionC3);
     
     FILE *g = fopen("Result_Splay_Skew.txt", "a");
     fprintf(g, "La busqueda para alfa = 0.5 tardo %ld milisegundos en ejecutarse.\n", duracionC1);
@@ -299,10 +300,11 @@ void main_RBTree(unsigned int exp_n , unsigned int ntest){
     //Se limpia el arbol
     cleanRBT(tree.root);
 
-    printf("Caso RBtree:\n");
-    printf("La busqueda para alfa = 0.5 tardo %ld milisegundos en ejecutarse.\n", duracionC1);
-    printf("La busqueda para alfa = 1.0 tardo %ld milisegundos en ejecutarse.\n", duracionC2);
-    printf("La busqueda para alfa = 1.5 tardo %ld milisegundos en ejecutarse.\n", duracionC3);
+    cout << ".";
+    //printf("Caso RBtree:\n");
+    //printf("La busqueda para alfa = 0.5 tardo %ld milisegundos en ejecutarse.\n", duracionC1);
+    //printf("La busqueda para alfa = 1.0 tardo %ld milisegundos en ejecutarse.\n", duracionC2);
+    //printf("La busqueda para alfa = 1.5 tardo %ld milisegundos en ejecutarse.\n", duracionC3);
     
     FILE *g = fopen("Result_RB_Skew.txt", "a"); //write
     fprintf(g, "La busqueda para alfa = 0.5 tardo %ld milisegundos en ejecutarse.\n", duracionC1);
@@ -332,6 +334,20 @@ void main_both(unsigned int exp_n, unsigned int ntest){
     //Se permuta el arreglo pi de manera aleatoria
     shuffle(pi, pi + n, mt19937{random_device{}()});
 
+    //Se crea el arbol splay
+    node *root = insert(NULL, 1);
+    for(unsigned int i=0; i<n; i++){
+        root = insert(root, pi[i]);
+    }
+
+    //Se crea el arbol RB
+    RBTree tree;
+    for (unsigned int i=0; i<n; i++){
+        tree.insert(pi[i]);
+    }
+
+    shuffle(pi, pi + n, mt19937{random_device{}()});
+    
     //Un arreglo de los valores que debe tomar alpha
     float alphas[3]={0.5,1,1.5};
 
@@ -340,20 +356,6 @@ void main_both(unsigned int exp_n, unsigned int ntest){
 
     //para cada valor de alpha o para cada arreglo
     for(unsigned int i=0; i<3; i++) {
-
-        //Se crea el arbol splay
-        node *root = insert(NULL, 1);
-        for(unsigned int i=0; i<n; i++){
-            root = insert(root, pi[i]);
-        }
-
-        //Se crea el arbol RB
-        RBTree tree;
-        for (unsigned int i=0; i<n; i++){
-            tree.insert(pi[i]);
-        }
-        
-        shuffle(pi, pi + n, mt19937{random_device{}()});
 
         //Se setea el apha correspondiente
         double alpha = alphas[i];
@@ -422,6 +424,7 @@ void main_both(unsigned int exp_n, unsigned int ntest){
         //Se guarda el tiempo transcurrido
         resRB[i]=duracionRBC1;
         delete[] arreglos[i];
+        cout << ".";
     }
     
     //clean el arbol splay
@@ -430,15 +433,14 @@ void main_both(unsigned int exp_n, unsigned int ntest){
     //Se limpia el arbol
     cleanRBT(tree.root);
 
-    printf("Caso SplayTree:\n");
-    for(int i=0;i<3;i++){
-        cout << "La busqueda para alfa = " << alphas[i] << " tardo " << resSplay[i] <<  " milisegundos en ejecutarse.\n";    
-    }
-
-    printf("Caso RBtree:\n");
-    for(int i=0;i<3;i++){
-        cout << "La busqueda para alfa = " << alphas[i] << " tardo " << resRB[i] <<  " milisegundos en ejecutarse.\n";    
-    }
+   //printf("Caso SplayTree:\n");
+    //for(int i=0;i<3;i++){
+        //cout << "La busqueda para alfa = " << alphas[i] << " tardo " << resSplay[i] <<  " milisegundos en ejecutarse.\n";    
+    //}
+    //printf("Caso RBtree:\n");
+    //for(int i=0;i<3;i++){
+        //cout << "La busqueda para alfa = " << alphas[i] << " tardo " << resRB[i] <<  " milisegundos en ejecutarse.\n";    
+    //}
 
     ofstream archivo;
     archivo.open("Result_Splay_Skew.txt", fstream::app);
@@ -460,7 +462,7 @@ void main_both(unsigned int exp_n, unsigned int ntest){
     res05[ntest]=resSplay[0];
     res1[ntest]=resSplay[1];
     res15[ntest]=resSplay[2];
-
+    cout << ";";
 }
 
 //Calcula el promedio de los tiempos de ejecución
@@ -505,7 +507,7 @@ int main(){
     
     for(unsigned int i=16; i<=24; i++){
         n=i;
-        printf("Para n = %d:\n", n);
+        printf("n = %d:\n", n);
         FILE *f = fopen("Result_RB_Skew.txt", "a"); //append
         FILE *g = fopen("Result_Splay_Skew.txt", "a"); //append
         fprintf(f, "Para n = %d:\n", n);
@@ -515,7 +517,7 @@ int main(){
         
         for (unsigned int j=0; j<n_test; j++){
             
-            printf("Test %d:\n", j+1);
+            printf("T%d", j+1);
             f = fopen("Result_RB_Skew.txt", "a"); //append
             g = fopen("Result_Splay_Skew.txt", "a"); //append
             fprintf(f, "Test %d:\n", j+1);
