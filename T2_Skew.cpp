@@ -422,13 +422,14 @@ void main_both(unsigned int exp_n, unsigned int ntest){
         //Se guarda el tiempo transcurrido
         resRB[i]=duracionRBC1;
         delete[] arreglos[i];
+        //clean el arbol splay
+        cleanSplay(root);
+    
+        //Se limpia el arbol
+        cleanRBT(tree.root);
+
     }
     
-    //clean el arbol splay
-    cleanSplay(root);
-
-    //Se limpia el arbol
-    cleanRBT(tree.root);
 
     printf("Caso SplayTree:\n");
     for(int i=0;i<3;i++){

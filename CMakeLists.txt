@@ -3,9 +3,9 @@ project(Tarea2_Logaritmos)
 
 add_subdirectory(Librerias) #Aqui se agrega la carpeta de las librerias
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3") #Aqui se agregan las banderas de compilacion 
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-O3 -std=c++11 -pthread" ) #Aqui se agregan las banderas de compilacion 
 
-# Añadir un objetivo personalizado que se ejecute siempre
+# Añadir un objetivo personalizado que se ejecute siempre 
 add_custom_target(abrir_readme ALL
                   COMMAND ${CMAKE_COMMAND} -E cat ../readmake.txt)
 
