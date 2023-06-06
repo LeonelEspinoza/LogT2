@@ -16,7 +16,7 @@ float *res05; //Arreglo donde se guardarán los tiempos de ejecución de cada te
 float *res1;
 float *res15;
 
-static const unsigned int m=pow(2,28);
+unsigned int m;
 
 unsigned int f(unsigned int i, double alpha){
     unsigned int res = (unsigned int) pow(i,alpha);
@@ -322,11 +322,7 @@ void main_both(unsigned int exp_n, unsigned int ntest){
     unsigned int *pi = new unsigned int[n];
 
     //Crear tres arreglos de tamaño M
-    unsigned int *C1 = new unsigned int[m];
-    unsigned int *C2 = new unsigned int[m];
-    unsigned int *C3 = new unsigned int[m];
-
-    unsigned int* arreglos[3] = {C1,C2,C3};
+    unsigned int *C = new unsigned int[m];
 
     //Se llena el arreglo pi con los numeros del 1 al n
     iota(pi, pi + n, 1);
@@ -352,8 +348,9 @@ void main_both(unsigned int exp_n, unsigned int ntest){
     float alphas[3]={0.5,1,1.5};
 
     int resRB[3]= {0};
+    
     int resSplay[3]= {0};
-
+    cout << ",";
     //para cada valor de alpha o para cada arreglo
     for(unsigned int i=0; i<3; i++) {
 
@@ -371,7 +368,7 @@ void main_both(unsigned int exp_n, unsigned int ntest){
             //Lo escribimos phi(i) veces en C
             for(unsigned int p=phi(j, alpha, n); p>0; p--){
                 //Escribimos en C
-                arreglos[i][ptr]=pi[j];
+                C[ptr]=pi[j];
                 //Si el puntero es mayor al tamaño de C, break
                 if (ptr >= m) {
                     break;
@@ -386,17 +383,17 @@ void main_both(unsigned int exp_n, unsigned int ntest){
         }
         //Si termino el ciclo pero C no esta lleno rellenarlo con el último valor escrito
         for(int k=ptr; k<m; k++){
-            arreglos[i][k]=arreglos[i][k-1];
+            C[k]=C[k-1];
         }
 
         //Aleatorizamos el arreglo C
-        shuffle(arreglos[i], arreglos[i] + m, mt19937{random_device{}()});
+        shuffle(C, C + m, mt19937{random_device{}()});
         
         //iniciamos el cronometro
         auto inicio=chrono::high_resolution_clock::now();
         //Buscamos en el SplayTree
         for(int e=0; e<m;e++){
-            root = search(root, arreglos[i][e]);
+            root = search(root, C[e]);
         }
         //termina el cronometro
         auto fin = chrono::high_resolution_clock::now();
@@ -412,7 +409,7 @@ void main_both(unsigned int exp_n, unsigned int ntest){
 
         //Se busca cada elemento del arreglo C1 en el árbol RB
         for(int e=0; e<m; e++){
-            searchRBT(tree.root, arreglos[i][e]);
+            searchRBT(tree.root, C[e]);
         }
 
         //Se finaliza el cronometro
@@ -423,24 +420,15 @@ void main_both(unsigned int exp_n, unsigned int ntest){
 
         //Se guarda el tiempo transcurrido
         resRB[i]=duracionRBC1;
-        delete[] arreglos[i];
         cout << ".";
     }
+    delete[] C;
     
     //clean el arbol splay
     cleanSplay(root);
 
     //Se limpia el arbol
     cleanRBT(tree.root);
-
-   //printf("Caso SplayTree:\n");
-    //for(int i=0;i<3;i++){
-        //cout << "La busqueda para alfa = " << alphas[i] << " tardo " << resSplay[i] <<  " milisegundos en ejecutarse.\n";    
-    //}
-    //printf("Caso RBtree:\n");
-    //for(int i=0;i<3;i++){
-        //cout << "La busqueda para alfa = " << alphas[i] << " tardo " << resRB[i] <<  " milisegundos en ejecutarse.\n";    
-    //}
 
     ofstream archivo;
     archivo.open("Result_Splay_Skew.txt", fstream::app);
@@ -490,7 +478,8 @@ float desviacion(float varianza){
 }   
 
 int main(){
-    //Testeamos 5 veces para el n dado indica 2^n
+    m=pow(2,28);
+    //Testeamos 3 veces para el n dado indica 2^n
     unsigned int n;
     resRBT05 = new float[n_test];
     resRBT1 = new float[n_test];
@@ -502,74 +491,90 @@ int main(){
 
     FILE *f = fopen("Result_RB_Skew.txt", "w+"); //write
     fclose(f);
-    FILE *g = fopen("Result_Splay_Skew.txt", "w+"); //write
-    fclose(g);
+    f = fopen("Result_Splay_Skew.txt", "w+"); //write
+    fclose(f);
     
     for(unsigned int i=16; i<=24; i++){
         n=i;
-        printf("n = %d:\n", n);
-        FILE *f = fopen("Result_RB_Skew.txt", "a"); //append
-        FILE *g = fopen("Result_Splay_Skew.txt", "a"); //append
-        fprintf(f, "Para n = %d:\n", n);
-        fprintf(g, "Para n = %d:\n", n);
-        fclose(f);
-        fclose(g);
-        
+        cout << "\nn=" << n << "\n";
+
+        ofstream archivo;
+
+        archivo.open("Result_RB_Skew.txt",fstream::app);
+        archivo << "Para n ="<< n <<":\n";
+        archivo.close();
+
+        archivo.open("Result_Splay_Skew.txt",fstream::app);
+        archivo << "Para n ="<< n <<":\n";
+        archivo.close();
+
         for (unsigned int j=0; j<n_test; j++){
-            
-            printf("T%d", j+1);
-            f = fopen("Result_RB_Skew.txt", "a"); //append
-            g = fopen("Result_Splay_Skew.txt", "a"); //append
-            fprintf(f, "Test %d:\n", j+1);
-            fprintf(g, "Test %d:\n", j+1);
-            fclose(f);
-            fclose(g);
+
+            cout << "T" << j+1;
+
+            archivo.open("Result_RB_Skew.txt", fstream::app);
+            archivo << "Test " << j+1 << "\n";
+            archivo.close();
+
+            archivo.open("Result_Splay_Skew.txt", fstream::app);
+            archivo << "Test " << j+1 << "\n";
+            archivo.close();
                
             main_both(n,j);
 
-            //main_RBTree(n,j);
-            //main_splay(n,j);
         }
+    
         
-        f = fopen("Result_RB_Skew.txt", "a"); //append
-        g = fopen("Result_Splay_Skew.txt", "a"); //append        
-        float promedio1 = promedio(resRBT05, n_test);
-        fprintf(f, "\n\nPromedio de RBTree para alfa = 0.5: %f\n", promedio1);
-        fprintf(f, "Varianza de RBTree para alfa = 0.5: %f\n", varianza(resRBT05, promedio1, n_test));
-        fprintf(f, "Desviacion estandar de RBTree para alfa = 0.5: %f\n", desviacion(varianza(resRBT05, promedio1, n_test)));
+        archivo.open("Result_RB_Skew.txt", fstream::app);
+        float prom = promedio(resRBT05, n_test);
+        float V = varianza(resRBT05, prom, n_test);
+        archivo << "\n\nAlfa=0.5\n";
+        archivo << "Promedio: "<< prom <<"\n";
+        archivo << "Varianza: "<< V <<"\n";
+        archivo << "Desviacion estandar: "<< desviacion(V) <<"\n";
 
-        float promedio2 = promedio(resRBT1, n_test);
-        fprintf(f, "\nPromedio de RBTree para alfa = 1.0: %f\n", promedio2);
-        fprintf(f, "Varianza de RBTree para alfa = 1.0: %f\n", varianza(resRBT1, promedio2, n_test));
-        fprintf(f, "Desviacion estandar de RBTree para alfa = 1.0: %f\n", desviacion(varianza(resRBT1, promedio2, n_test)));
+        prom =promedio(resRBT1, n_test);
+        V =varianza(resRBT1, prom, n_test);
+        archivo << "\n\nAlfa=1.0\n";
+        archivo << "Promedio: "<< prom <<"\n";
+        archivo << "Varianza: "<< V <<"\n";
+        archivo << "Desviacion estandar: "<< desviacion(V) <<"\n";
 
-        float promedio3 = promedio(resRBT15, n_test);
-        fprintf(f, "\nPromedio de RBTree para alfa = 1.5: %f\n", promedio3);
-        fprintf(f, "Varianza de RBTree para alfa = 1.5: %f\n", varianza(resRBT15, promedio3, n_test));
-        fprintf(f, "Desviacion estandar de RBTree para alfa = 1.5: %f\n", desviacion(varianza(resRBT15, promedio3, n_test)));
+        prom =promedio(resRBT15, n_test);
+        V =varianza(resRBT15, prom, n_test);
+        archivo << "\n\nAlfa=1.5\n";
+        archivo << "Promedio: "<< prom <<"\n";
+        archivo << "Varianza: "<< V <<"\n";
+        archivo << "Desviacion estandar: "<< desviacion(V) <<"\n\n";
 
+        archivo.close();
 
-        float promedio4 = promedio(res05, n_test);
-        fprintf(g, "\n\nPromedio de SplayTree para alfa = 0.5: %f\n", promedio4);
-        fprintf(g, "Varianza de SplayTree para alfa = 0.5: %f\n", varianza(res05, promedio4, n_test));
-        fprintf(g, "Desviacion estandar de SplayTree para alfa = 0.5: %f\n", desviacion(varianza(res05, promedio4, n_test)));
+        //Escribir en Result_Splay_Skew.txt el promedio, var y des. std para cada alfa
+        archivo.open("Result_Splay_Skew.txt", fstream::app);
 
-        float promedio5 = promedio(res1, n_test);
-        fprintf(g, "\nPromedio de SplayTree para alfa = 1.0: %f\n", promedio5);
-        fprintf(g, "Varianza de SplayTree para alfa = 1.0: %f\n", varianza(res1, promedio5, n_test));
-        fprintf(g, "Desviacion estandar de SplayTree para alfa = 1.0: %f\n", desviacion(varianza(res1, promedio5, n_test)));
+        prom =promedio(res05, n_test);
+        V =varianza(res05, prom, n_test);
+        archivo << "\n\nAlfa=0.5\n";
+        archivo << "Promedio: "<< prom <<"\n";
+        archivo << "Varianza: "<< V <<"\n";
+        archivo << "Desviacion estandar: "<< desviacion(V) <<"\n";
 
-        float promedio6 = promedio(res15, n_test);
-        fprintf(g, "\nPromedio de SplayTree para alfa = 1.5: %f\n", promedio6);
-        fprintf(g, "Varianza de SplayTree para alfa = 1.5: %f\n", varianza(res15, promedio6, n_test));
-        fprintf(g, "Desviacion estandar de SplayTree para alfa = 1.5: %f\n", desviacion(varianza(res15, promedio6, n_test)));
-        fclose(f);
-        fclose(g);
-        
+        prom =promedio(res1, n_test);
+        V =varianza(res1, prom, n_test);
+        archivo << "\n\nAlfa=1.0\n";
+        archivo << "Promedio: "<< prom <<"\n";
+        archivo << "Varianza: "<< V <<"\n";
+        archivo << "Desviacion estandar: "<< desviacion(V) <<"\n";
+
+        prom =promedio(res15, n_test);
+        V =varianza(res15, prom, n_test);
+        archivo << "\n\nAlfa=1.5\n";
+        archivo << "Promedio: "<< prom <<"\n";
+        archivo << "Varianza: "<< V <<"\n";
+        archivo << "Desviacion estandar: "<< desviacion(V) <<"\n\n";
+
+        archivo.close();
        }
-         
-    fclose(f);
-    fclose(g);
     delete[] resRBT05;
     delete[] resRBT1;
     delete[] resRBT15;
