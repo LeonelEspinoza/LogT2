@@ -106,7 +106,7 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     }
 
     //Se libera la memoria de N
-    delete[] N;
+    //delete[] N;
 
     for (unsigned int i=0; i<repeticiones_n; i++){
         thread_fill[i].join();
@@ -125,7 +125,8 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     //Se finaliza el cronometro
     auto fin = chrono::high_resolution_clock::now();
     //Clean el arbol splay
-    cleanSplay(root);
+    //cleanSplay(root);
+
     //Se calcula el tiempo transcurrido
     auto duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
 
@@ -138,7 +139,7 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     fprintf(g, "La busqueda tardo %ld milisegundos en ejecutarse.\n\n", duracion);    
 
 
-    N = initN(n);
+    //N = initN(n);
     //Se crea el arbol
     RBTree tree;
     for (unsigned int i=0; i<n; i++){
@@ -159,8 +160,10 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
 
     //Se finaliza el cronometro
     fin = chrono::high_resolution_clock::now();
+    
     //Clean el arbol splay
-    cleanRBT(tree.root);
+    //cleanRBT(tree.root);
+    
     //Se calcula el tiempo transcurrido
     duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
     //fprintf(f, "Test %d:\n", j+1);
@@ -176,13 +179,13 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     j++;
 
     for (unsigned int i=1; i<n_test; i++){
-        N = initN(n);
-        //Se crea el arbol
-        RBTree tree;
-        for (unsigned int i=0; i<n; i++){
-            tree.insert(N[i]);
-        } 
-        delete[] N;
+        //N = initN(n);
+        ////Se crea el arbol
+        //RBTree tree;
+        //for (unsigned int i=0; i<n; i++){
+        //    tree.insert(N[i]);
+        //} 
+        //delete[] N;
         //Se permuta el arreglo M de manera aleatoria
         shuffle(M, M + m, mt19937{random_device{}()});
 
@@ -196,8 +199,10 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
 
         //Se finaliza el cronometro
         fin = chrono::high_resolution_clock::now();
+        
         //Clean el arbol splay
-        cleanRBT(tree.root);
+        //cleanRBT(tree.root);
+        
         //Se calcula el tiempo transcurrido
         duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
         //fprintf(f, "Test %d:\n", j+1);
@@ -212,12 +217,12 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
         fprintf(f, "Test %d:\n", j+1);
         fprintf(f, "La busqueda tardo %ld milisegundos en ejecutarse.\n\n", duracion);
 
-        N = initN(n);
-        root = insert(NULL, 1);
-        for(unsigned int i=0; i<n; i++){
-            root = insert(root, N[i]);
-        }        
-        delete[] N;
+        //N = initN(n);
+        //root = insert(NULL, 1);
+        //for(unsigned int i=0; i<n; i++){
+        //    root = insert(root, N[i]);
+        //}        
+        //delete[] N;
         //Se permuta el arreglo M de manera aleatoria
         shuffle(M, M + m, mt19937{random_device{}()});
 
@@ -232,7 +237,7 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
         //Se finaliza el cronometro
         fin = chrono::high_resolution_clock::now();
         //Clean el arbol splay
-        cleanSplay(root);
+        //cleanSplay(root);
         //Se calcula el tiempo transcurrido
         duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
         //fprintf(f, "Test %d:\n", j+1);
@@ -252,6 +257,9 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
 
     //Se libera la memoria de M
     delete[] M;
+    //Se clenea
+    cleanRBT(tree.root);
+    cleanSplay(root);
     fclose(f);
     fclose(g);
 
