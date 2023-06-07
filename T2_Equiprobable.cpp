@@ -39,10 +39,12 @@ float desviacion(float varianza){
     return sqrt(varianza);
 }
 
+//Argumentos para el thread de inicialización de M
 typedef struct {
     unsigned int *M;
 } args;
 
+//Argumentos para el thread de llenado de M
 typedef struct {
     unsigned int *M;
     unsigned int inicio;
@@ -50,11 +52,13 @@ typedef struct {
     unsigned int *N;
 } argsFill;
 
+//Función que inicializa el arreglo M con los elementos de N mediante un thread
 void thread_functionInitM(void *arg){
     args *argumentos = (args*) arg;
     argumentos->M = new unsigned int[m];
 }
 
+//Función que llena el arreglo M con los elementos de N mediante threads
 void thread_fillM(void *arg){
     argsFill args = *(argsFill*) arg;
     for (unsigned int i=args.inicio; i<args.fin; i++){
@@ -62,6 +66,7 @@ void thread_fillM(void *arg){
     }
 }
 
+//Función que inicializa el arreglo N con los elementos que se insertarán en el árbol
 unsigned int *initN(unsigned int n){
         unsigned int *N = new unsigned int[n];
         //Se llena el arreglo N con los numeros del 1 al n
@@ -71,6 +76,7 @@ unsigned int *initN(unsigned int n){
         return N;
 }
 
+//Argumentos para el thread de Red Black
 typedef struct {
     unsigned int *M;
     RBTree *tree;
@@ -79,7 +85,7 @@ typedef struct {
     
 } argsRB;
 
-
+//Argumentos para el thread de Splay
 typedef struct {
     unsigned int *M;
     node **nodo;
@@ -87,6 +93,7 @@ typedef struct {
     unsigned int j;
 } argsSplay;
 
+//Función que ejecuta el thread para la secuencia de búsqueda M en el árbol Red Black
 void th_searchRb(void *arg){
     argsRB args = *(argsRB*) arg;
     Node *nroot = args.tree->root;
@@ -99,6 +106,7 @@ void th_searchRb(void *arg){
     args.result_RB[args.j] = duracion;
 }
 
+//Función que ejecuta el thread para la secuencia de búsqueda M en el árbol Splay
 void th_searchSplay(void *arg){
     argsSplay args = *(argsSplay*) arg;
     node **nroot = args.nodo;
@@ -137,6 +145,7 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     unsigned int finfill = pasos;
     argsFill *argFill = new argsFill[repeticiones_n];
 
+    //Se llena el arreglo M con los elementos de N mediante threads
     for (unsigned int i=0; i<repeticiones_n; i++){
         argsFill *arg = &argFill[i];
         arg->M = M;
@@ -153,27 +162,25 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     for(unsigned int i=0; i<n; i++){
         root = insert(root, N[i]);
     }
-    //printf("post search");
+    //printf("Para checkear");
     //preOrder(root);
-    
-    //preOrder(root);
-
-    //Se libera la memoria de N
-    //delete[] N;
 
     for (unsigned int i=0; i<repeticiones_n; i++){
         thread_fill[i].join();
     }
     delete[] argFill;
+
     //Se permuta el arreglo M de manera aleatoria
     shuffle(M, M + m, mt19937{random_device{}()});
 
+    //Se crean los elementos para ejecutar los siguientes threads de Search de RB y Splay
     int j= 0;
     argsRB *argRB = new argsRB[n_test];
     argsSplay *argSplay = new argsSplay[n_test];
     thread *thread_RB = new thread[n_test];
     thread *thread_Splay = new thread[n_test];
 
+    //Se lanza un thread para cada busqueda de Splay
     argsSplay *arg_splay = &argSplay[j];
     arg_splay->M = M;
     arg_splay->nodo = &root;
@@ -181,51 +188,14 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     arg_splay->j = j;
     thread_Splay[j] = thread(th_searchSplay, arg_splay);
 
-
-
-
-    //Se inicia el cronometro
-    //auto inicio = chrono::high_resolution_clock::now();
-
-    //Se busca cada elemento del arreglo M en el arbol
-
-    //for(unsigned int i=0; i<m; i++){
-    //    root=search(root, M[i]);
-    //}
-    
-    //printf("post search");
-    //preOrder(root);
-
-    //Se finaliza el cronometro
-    //auto fin = chrono::high_resolution_clock::now();
-    //Clean el arbol splay
-    //cleanSplay(root);
-
-    //Se calcula el tiempo transcurrido
-    //auto duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
-
-   
-
-
-    //N = initN(n);
-    //Se crea el arbol
-    //printf("printeamos n");
-    //for (unsigned int i; i<n;i++){
-    //    printf(" %d ", N[i]);
-    //}
-
     RBTree tree;
     //tree.inorder();
     for (unsigned int i=0; i<n; i++){
-        //printf("\n");
         tree.insert(N[i]);
-        //tree.inorder();
-        //printf("\n");
-    }
-    //printf("para printear el arbol");
-    //
 
-    
+    }
+
+    //Se lanza un thread para cada busqueda de RBTree
     argsRB *arg_rb = &argRB[j];
     arg_rb->M = M;
     arg_rb->tree = &tree;
@@ -233,35 +203,8 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     arg_rb->j = j;
     thread_RB[j] = thread(th_searchRb, arg_rb);
 
-
-
     delete[] N;
-    
 
-
-    //Se inicia el cronometro
-    //inicio = chrono::high_resolution_clock::now();
-    //Se busca cada elemento del arreglo M en el arbol
-    //for(unsigned int i=0; i<m; i++){
-    //    searchRBT(tree.root, M[i]);
-    //}
-    //printf("post borrar N");
-    //preOrder(root);    
-    //tree.inorder();
-    //printf("\n");
-    
-
-    //Se finaliza el cronometro
-    //fin = chrono::high_resolution_clock::now();
-    
-    //Clean el arbol splay
-    //cleanRBT(tree.root);
-    
-    //Se calcula el tiempo transcurrido
-    //duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
-    //fprintf(f, "Test %d:\n", j+1);
-    
-    //fclose(f);
 
     thread_RB[j].join();
     thread_Splay[j].join();
@@ -280,8 +223,6 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     duracion = resultados_splay[j];
     printf("Caso SplayTree:\n");
     printf("La busqueda tardo %f milisegundos en ejecutarse.\n \n", duracion);
-    //Se guarda el resultado en el arreglo de resultados
-    //resultados_splay[j] = duracion;
     FILE *g = fopen("Result_Splay_Equiprobable.txt", "a"); //append
     fprintf(g, "La busqueda tardo %f milisegundos en ejecutarse.\n\n", duracion); 
 
@@ -289,38 +230,10 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
 
     //Se permuta el arreglo M de manera aleatoria
     for (unsigned int i=1; i<n_test; i++){
-        shuffle(M, M + m, mt19937{random_device{}()});
-
-        //N = initN(n);
-        ////Se crea el arbol
-        //RBTree tree;
-        //for (unsigned int i=0; i<n; i++){
-        //    tree.insert(N[i]);
-        //} 
-        //delete[] N;
-        //Se permuta el arreglo M de manera aleatoria
-
-        //Se inicia el cronometro
-        //inicio = chrono::high_resolution_clock::now();
-
-        //Se busca cada elemento del arreglo M en el arbol
-        //for(unsigned int i=0; i<m; i++){
-        //    searchRBT(tree.root, M[i]);
-        //}
-
-        //Se finaliza el cronometro
-        //fin = chrono::high_resolution_clock::now();
+        shuffle(M, M + m, mt19937{random_device{}()}); //Se permuta el arreglo M de manera aleatoria
+        //Para asegurar aleatoriedad en la permutacion
         
-        //Clean el arbol splay
-        //cleanRBT(tree.root);
-        
-        //Se calcula el tiempo transcurrido
-        //duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
-        //fprintf(f, "Test %d:\n", j+1);
-
-        
-        //fclose(f);
-        
+        //Se lanza un thread para cada busqueda de RBTree
         arg_rb = &argRB[j];
         arg_rb->M = M;
         arg_rb->tree = &tree;
@@ -329,30 +242,7 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
         thread_RB[j] = thread(th_searchRb, arg_rb);
         
 
-
-        //N = initN(n);
-        //root = insert(NULL, 1);
-        //for(unsigned int i=0; i<n; i++){
-        //    root = insert(root, N[i]);
-        //}        
-        //delete[] N;
-        //Se permuta el arreglo M de manera aleatoria
-
-        //Se inicia el cronometro
-        //inicio = chrono::high_resolution_clock::now();
-
-        //Se busca cada elemento del arreglo M en el arbol
-        //for(unsigned int i=0; i<m; i++){
-        //    root=search(root, M[i]);
-        //}
-
-        //Se finaliza el cronometro
-        //fin = chrono::high_resolution_clock::now();
-        //Clean el arbol splay
-        //cleanSplay(root);
-        //Se calcula el tiempo transcurrido
-        //duracion = chrono::duration_cast<chrono::milliseconds>(fin - inicio).count();
-        //fprintf(f, "Test %d:\n", j+1);
+        //Se lanza un thread para cada busqueda de Splay
         arg_splay = &argSplay[j];
         arg_splay->M = M;
         arg_splay->nodo = &root;
@@ -424,17 +314,8 @@ int main(){
         fclose(g);
         mainbacan(n, resultados_RB, resultados_splay);
         
-        //for (unsigned int j=0; j<n_test; j++){
-        //    printf("Test %d:\n", j+1);
-        //    f = fopen("Result_RB_Equiprobable.txt", "a"); //append
-        //    g = fopen("Result_Splay_Equiprobable.txt", "a"); //append
-        //    fprintf(f, "Test %d:\n", j+1);
-        //    fprintf(g, "Test %d:\n", j+1);
-        //    fclose(f);
-        //    fclose(g);
-        //    main_RBTree(n,j,resultados_RB);
-        //    main_splay(n,j,resultados_splay);
-        //}
+
+        //Se escriben los resultados promedio, varianza y desviacion estandar 
         f = fopen("Result_RB_Equiprobable.txt", "a"); //append
         g = fopen("Result_Splay_Equiprobable.txt", "a"); //append
         float promedio1 = promedio(resultados_RB);
