@@ -1,0 +1,117 @@
+Para n = 2^16:
+Test 1:
+La busqueda tardo 24424.000000 milisegundos en ejecutarse.
+Test 2:
+La busqueda tardo 24442.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 24297.000000 milisegundos en ejecutarse.
+
+Promedio de RBTree: 24387.666016
+Varianza de RBTree: 4164.222168
+Desviacion estandar de RBTree: 64.530785
+
+Para n = 2^17:
+Test 1:
+La busqueda tardo 41300.000000 milisegundos en ejecutarse.
+Test 2:
+La busqueda tardo 38033.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 32871.000000 milisegundos en ejecutarse.
+
+Promedio de RBTree: 37401.332031
+Varianza de RBTree: 12040841.000000
+Desviacion estandar de RBTree: 3469.991455
+
+Para n = 2^18:
+Test 1:
+La busqueda tardo 64164.000000 milisegundos en ejecutarse.
+Test 2:
+La busqueda tardo 65419.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 63838.000000 milisegundos en ejecutarse.
+
+Promedio de RBTree: 64473.667969
+Varianza de RBTree: 464540.218750
+Desviacion estandar de RBTree: 681.571899
+
+Para n = 2^19:
+Test 1:
+La busqueda tardo 104449.000000 milisegundos en ejecutarse.
+Test 2:
+La busqueda tardo 106233.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 107137.000000 milisegundos en ejecutarse.
+
+Promedio de RBTree: 105939.664062
+Varianza de RBTree: 1247246.125000
+Desviacion estandar de RBTree: 1116.801758
+
+Para n = 2^20:
+Test 1:
+La busqueda tardo 155036.000000 milisegundos en ejecutarse.
+Test 2:
+La busqueda tardo 156333.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 147348.000000 milisegundos en ejecutarse.
+
+Promedio de RBTree: 152905.671875
+Varianza de RBTree: 15724197.000000
+Desviacion estandar de RBTree: 3965.374756
+
+Para n = 2^21:
+Test 1:
+La busqueda tardo 195282.000000 milisegundos en ejecutarse.
+Test 2:
+La busqueda tardo 193272.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 194167.000000 milisegundos en ejecutarse.
+
+Promedio de RBTree: 194240.328125
+Varianza de RBTree: 676038.875000
+Desviacion estandar de RBTree: 822.215820
+
+Para n = 2^22:
+Test 1:
+La busqueda tardo 170710.000000 milisegundos en ejecutarse.
+Test 2:
+La busqueda tardo 134880.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 138132.000000 milisegundos en ejecutarse.
+
+Promedio de RBTree: 147907.328125
+Varianza de RBTree: 261743408.000000
+Desviacion estandar de RBTree: 16178.486328
+
+Para n = 2^23:
+Test 1:
+La busqueda tardo 296432.000000 milisegundos en ejecutarse.
+Test 2:
+La busqueda tardo 305289.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 283188.000000 milisegundos en ejecutarse.
+
+Promedio de RBTree: 294969.656250
+Varianza de RBTree: 82478240.000000
+Desviacion estandar de RBTree: 9081.752930
+
+Para n = 2^24:
+Test 1:
+La busqueda tardo 369502.000000 milisegundos en ejecutarse.
+Test 2:
+La busqueda tardo 369046.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 362995.000000 milisegundos en ejecutarse.
+
+Promedio de RBTree: 367181.000000
+Varianza de RBTree: 8795954.000000
+Desviacion estandar de RBTree: 2965.797363
+

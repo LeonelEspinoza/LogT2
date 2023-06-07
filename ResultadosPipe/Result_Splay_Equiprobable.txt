@@ -1,0 +1,117 @@
+Para n = 2^16:
+La busqueda tardo 52141.000000 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 52551.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 52070.000000 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 52254.000000
+Varianza de SplayTree: 44944.667969
+Desviacion estandar de SplayTree: 212.001572
+
+Para n = 2^17:
+La busqueda tardo 65709.000000 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 62909.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 55553.000000 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 61390.332031
+Varianza de SplayTree: 18343898.000000
+Desviacion estandar de SplayTree: 4282.977539
+
+Para n = 2^18:
+La busqueda tardo 73296.000000 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 74616.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 73024.000000 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 73645.335938
+Varianza de SplayTree: 483427.593750
+Desviacion estandar de SplayTree: 695.289551
+
+Para n = 2^19:
+La busqueda tardo 124496.000000 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 126401.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 126433.000000 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 125776.664062
+Varianza de SplayTree: 820224.250000
+Desviacion estandar de SplayTree: 905.662354
+
+Para n = 2^20:
+La busqueda tardo 204978.000000 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 199469.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 172144.000000 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 192197.000000
+Varianza de SplayTree: 206119600.000000
+Desviacion estandar de SplayTree: 14356.866211
+
+Para n = 2^21:
+La busqueda tardo 234147.000000 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 233786.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 231376.000000 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 233103.000000
+Varianza de SplayTree: 1512984.625000
+Desviacion estandar de SplayTree: 1230.034424
+
+Para n = 2^22:
+La busqueda tardo 300236.000000 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 276766.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 279386.000000 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 285462.656250
+Varianza de SplayTree: 110269760.000000
+Desviacion estandar de SplayTree: 10500.940430
+
+Para n = 2^23:
+La busqueda tardo 343708.000000 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 339994.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 336901.000000 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 340201.000000
+Varianza de SplayTree: 7743966.000000
+Desviacion estandar de SplayTree: 2782.798340
+
+Para n = 2^24:
+La busqueda tardo 398502.000000 milisegundos en ejecutarse.
+
+Test 2:
+La busqueda tardo 395900.000000 milisegundos en ejecutarse.
+
+Test 3:
+La busqueda tardo 399033.000000 milisegundos en ejecutarse.
+
+Promedio de SplayTree: 397811.656250
+Varianza de SplayTree: 1874228.125000
+Desviacion estandar de SplayTree: 1369.024536
+

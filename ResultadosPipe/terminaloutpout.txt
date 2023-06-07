@@ -1,0 +1,160 @@
+Para n = 2^16:
+
+Caso RB:
+La busqueda tardo 24424.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 52141.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 24442.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 52551.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 24297.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 52070.000000 milisegundos en ejecutarse.
+
+
+Para n = 2^17:
+
+Caso RB:
+La busqueda tardo 41300.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 65709.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 38033.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 62909.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 32871.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 55553.000000 milisegundos en ejecutarse.
+
+
+Para n = 2^18:
+
+Caso RB:
+La busqueda tardo 64164.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 73296.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 65419.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 74616.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 63838.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 73024.000000 milisegundos en ejecutarse.
+
+
+Para n = 2^19:
+
+Caso RB:
+La busqueda tardo 104449.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 124496.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 106233.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 126401.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 107137.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 126433.000000 milisegundos en ejecutarse.
+
+
+Para n = 2^20:
+
+Caso RB:
+La busqueda tardo 155036.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 204978.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 156333.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 199469.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 147348.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 172144.000000 milisegundos en ejecutarse.
+
+
+Para n = 2^21:
+
+Caso RB:
+La busqueda tardo 195282.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 234147.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 193272.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 233786.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 194167.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 231376.000000 milisegundos en ejecutarse.
+
+
+Para n = 2^22:
+
+Caso RB:
+La busqueda tardo 170710.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 300236.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 134880.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 276766.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 138132.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 279386.000000 milisegundos en ejecutarse.
+
+
+Para n = 2^23:
+
+Caso RB:
+La busqueda tardo 296432.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 343708.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 305289.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 339994.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 283188.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 336901.000000 milisegundos en ejecutarse.
+
+
+Para n = 2^24:
+
+Caso RB:
+La busqueda tardo 369502.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 398502.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 369046.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 395900.000000 milisegundos en ejecutarse.
+
+Caso RB:
+La busqueda tardo 362995.000000 milisegundos en ejecutarse.
+Caso SplayTree:
+La busqueda tardo 399033.000000 milisegundos en ejecutarse.
