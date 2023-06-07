@@ -7,10 +7,13 @@
 #include <splaytree.h>
 #include <thread>
 
-
-static const unsigned int m = pow(2,4); //Tamaño del arreglo de la secuencia de búsqueda M
+static const unsigned int m_tamaño = 4; //
+static const unsigned int m = pow(2,m_tamaño); //Tamaño del arreglo de la secuencia de búsqueda M
 using namespace std;
 unsigned int n_test=3;
+unsigned int inicio_tarea = 2;
+unsigned int fin_tarea = 3;
+
 //Calcula el promedio de los tiempos de ejecución
 float promedio(float res[]){
     float promedio = 0;
@@ -71,7 +74,7 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     
     unsigned int n = pow(2, exp_n); //Tamaño del arreglo N de los elementos que se insertarán en el árbol
     unsigned int *M;
-    unsigned int repeticiones_n = pow(2, 4-exp_n); //chequear el m
+    unsigned int repeticiones_n = pow(2, m_tamaño-exp_n); //chequear el m
     unsigned int puntero = 0;    
     thread t1;
     args *arg = new args;
@@ -175,6 +178,11 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     for(unsigned int i=0; i<m; i++){
         searchRBT(tree.root, M[i]);
     }
+    //printf("post borrar N");
+    //preOrder(root);    
+    //tree.inorder();
+    //printf("\n");
+    
 
     //Se finaliza el cronometro
     fin = chrono::high_resolution_clock::now();
@@ -291,7 +299,7 @@ int main(){
     fclose(f);
     FILE *g = fopen("Result_Splay_Equiprobable.txt", "w+"); //write
     fclose(g);
-    for(unsigned int i=3; i<4; i++){
+    for(unsigned int i=inicio_tarea; i<fin_tarea; i++){
         float resultados_RB[n_test]; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para RBTree
         float resultados_splay[n_test]; //Arreglo donde se guardarán los tiempos de ejecución de cada test segun el n para SplayTree
         n=i;
