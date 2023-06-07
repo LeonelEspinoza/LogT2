@@ -60,7 +60,7 @@ node *splay(node *root, unsigned int key)
     if (root->key > key)
     {
         // Key is not in tree, we are done
-        if (root->left == NULL) return root;
+        if (root->left == NULL) return NULL;
  
         // Zig-Zig (Left Left)
         if (root->left->key > key)
@@ -90,7 +90,7 @@ node *splay(node *root, unsigned int key)
     else // Key lies in right subtree
     {
         // Key is not in tree, we are done
-        if (root->right == NULL) return root;
+        if (root->right == NULL) return NULL;
  
         // Zig-Zag (Right Left)
         if (root->right->key > key)
