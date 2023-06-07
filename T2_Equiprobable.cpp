@@ -7,12 +7,12 @@
 #include <splaytree.h>
 #include <thread>
 
-static const unsigned int m_tamaño = 4; //
+static const unsigned int m_tamaño = 28; //
 static const unsigned int m = pow(2,m_tamaño); //Tamaño del arreglo de la secuencia de búsqueda M
 using namespace std;
 unsigned int n_test=3;
-unsigned int inicio_tarea = 2;
-unsigned int fin_tarea = 3;
+unsigned int inicio_tarea = 16;
+unsigned int fin_tarea = 17;
 
 //Calcula el promedio de los tiempos de ejecución
 float promedio(float res[]){
@@ -47,6 +47,7 @@ typedef struct {
     unsigned int *M;
     unsigned int inicio;
     unsigned int fin;
+    unsigned int *N;
 } argsFill;
 
 void thread_functionInitM(void *arg){
@@ -57,7 +58,7 @@ void thread_functionInitM(void *arg){
 void thread_fillM(void *arg){
     argsFill args = *(argsFill*) arg;
     for (unsigned int i=args.inicio; i<args.fin; i++){
-        args.M[i] = i+1;
+        args.M[i] = args.N[i-args.inicio];
     }
 }
 
@@ -97,6 +98,7 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     for (unsigned int i=0; i<repeticiones_n; i++){
         argsFill *arg = &argFill[i];
         arg->M = M;
+        arg->N = N;
         arg->inicio = iniciofill;
         arg->fin = finfill;
         thread_fill[i] = thread(thread_fillM, arg);
@@ -166,6 +168,8 @@ void mainbacan(unsigned int exp_n, float resultados_RB[], float resultados_splay
     }
     //printf("para printear el arbol");
     //
+
+
 
     delete[] N;
     
