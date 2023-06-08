@@ -160,7 +160,7 @@ void main_both(unsigned int exp_n, unsigned int ntest){
     //Se limpia el arbol
     cleanRBT(tree.root);
     
-    delete [] C;
+    delete[] C;
 
     ofstream archivo;
     archivo.open("Result_Splay_Skew.txt", fstream::app);
