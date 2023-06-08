@@ -20,12 +20,12 @@ float *res15;
 unsigned int m;
 unsigned int SUM;
 
-unsigned int f(unsigned int i, double alpha){
+int f(unsigned int i, double alpha){
     if (alpha<1){
-        return (unsigned int) sqrt(i);
+        return (int) sqrt(i);
     }
     if(alpha>1){
-        return (unsigned int) i*sqrt(i);
+        return (int) i*sqrt(i);
     }
     return i;
 }
@@ -120,8 +120,7 @@ void main_both(unsigned int exp_n, unsigned int ntest){
         for(int e=0; e<m;e++){
             node* tmp = search(root, C[e]);
             if (tmp==NULL){
-                cerr << C[e] <<" not found in splay tree";
-                exit(EXIT_FAILURE);
+                cout << C[e] <<" not found in splay tree";
             }
             root=tmp;
         }
@@ -140,8 +139,7 @@ void main_both(unsigned int exp_n, unsigned int ntest){
         //Se busca cada elemento del arreglo C1 en el árbol RB
         for(int e=0; e<m; e++){
             if (searchRBT(tree.root, C[e])==NULL){
-                cerr << C[e] <<" not found in RB tree";
-                exit(EXIT_FAILURE);
+                cout << C[e] <<" not found in RB tree";
             }
         }
 
@@ -161,6 +159,8 @@ void main_both(unsigned int exp_n, unsigned int ntest){
 
     //Se limpia el arbol
     cleanRBT(tree.root);
+    
+    delete [] C;
 
     ofstream archivo;
     archivo.open("Result_Splay_Skew.txt", fstream::app);
@@ -256,7 +256,6 @@ int main(){
 
         }
     
-        
         archivo.open("Result_RB_Skew.txt", fstream::app);
         float prom = promedio(resRBT05, n_test);
         float V = varianza(resRBT05, prom, n_test);
